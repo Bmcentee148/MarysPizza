@@ -749,7 +749,7 @@
         <a href="#menu">Menu</a>
         <a href="#catering">Catering</a>
         <a href="#events">Private Events</a>
-        <a href="#visit">Visit &amp; Hours</a>
+        <a href="#locations">Visit &amp; Hours</a>
       </div>
       <div class="foot-col">
         <h4>Our Locations</h4>
@@ -849,7 +849,7 @@
     document.querySelectorAll('.btn-set-loc').forEach(btn => {
       btn.addEventListener('click', () => {
         applyLocation(btn.dataset.loc);
-        document.getElementById('menu').scrollIntoView({behavior:'smooth', block:'start'});
+        scrollToId('menu');
       });
     });
   }
@@ -863,6 +863,34 @@
   const nav = document.getElementById('nav');
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // accurate in-page scrolling that accounts for the sticky nav's height
+  function scrollToId(id, behavior){
+    const target = document.getElementById(id);
+    if(!target) return;
+    const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 16;
+    window.scrollTo({top: Math.max(top, 0), behavior: behavior || 'smooth'});
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    const id = a.getAttribute('href').slice(1);
+    if(!id || !document.getElementById(id)) return;
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToId(id);
+      history.pushState(null, '', '#' + id);
+    });
+  });
+  // correct the browser's own jump when the page loads with a #hash in the URL
+  // (re-applied after load/settling since late image/font layout shifts can move the target)
+  if(location.hash){
+    const startId = location.hash.slice(1);
+    if(document.getElementById(startId)){
+      const fixHashScroll = () => scrollToId(startId, 'auto');
+      requestAnimationFrame(fixHashScroll);
+      window.addEventListener('load', fixHashScroll);
+      setTimeout(fixHashScroll, 500);
+    }
+  }
 
   // mobile menu
   const burger = document.getElementById('burger');
