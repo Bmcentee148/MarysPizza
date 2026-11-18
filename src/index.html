@@ -836,14 +836,40 @@
     saveLocation(id);
   }
 
+  // On a location-specific menu page (takeout), the page itself decides the
+  // location: these return the locations whose takeout menu is this page.
+  function currentPath(){
+    let p = location.pathname.replace(/index\.html$/, '');
+    return p.endsWith('/') ? p : p + '/';
+  }
+  function locationsForThisMenu(){
+    return Object.keys(LOCATIONS).filter(id => LOCATIONS[id].takeoutMenuUrl === currentPath());
+  }
+
+  // Header location picker: on a takeout menu page, picking a location whose
+  // takeout menu is a different page goes to that page (the choice is saved
+  // first, so the new page opens with it selected).
+  function pickLocation(id){
+    applyLocation(id);
+    const onMenu = locationsForThisMenu();
+    if(onMenu.length && !onMenu.includes(id) && LOCATIONS[id]){
+      location.href = LOCATIONS[id].takeoutMenuUrl;
+    }
+  }
+
   function initLocationSwitcher(){
-    const startId = getSavedLocation() || DEFAULT_LOC;
+    let startId = getSavedLocation() || DEFAULT_LOC;
+    // landing on a takeout menu page: make the picker match the menu shown
+    const onMenu = locationsForThisMenu();
+    if(onMenu.length && !onMenu.includes(startId)){
+      startId = onMenu.includes(DEFAULT_LOC) ? DEFAULT_LOC : onMenu[0];
+    }
     applyLocation(startId);
 
     const sel = document.getElementById('locSwitcher');
-    if(sel) sel.addEventListener('change', (e) => applyLocation(e.target.value));
+    if(sel) sel.addEventListener('change', (e) => pickLocation(e.target.value));
     const selMobile = document.getElementById('locSwitcherMobile');
-    if(selMobile) selMobile.addEventListener('change', (e) => applyLocation(e.target.value));
+    if(selMobile) selMobile.addEventListener('change', (e) => pickLocation(e.target.value));
 
     document.querySelectorAll('.loc-pill').forEach(btn => {
       btn.addEventListener('click', () => applyLocation(btn.dataset.loc));
