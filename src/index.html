@@ -351,8 +351,8 @@
     .brand .bt span{font-size:.56rem;letter-spacing:.2em}
     .burger{display:flex}
     .mobile-menu{display:block;position:fixed;inset:0 0 0 auto;width:min(320px,84vw);background:var(--cream);z-index:70;
-      transform:translateX(100%);transition:transform .3s ease;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4);padding:26px 24px;overflow-y:auto}
-    .mobile-menu.open{transform:none}
+      transform:translateX(100%);transition:transform .3s ease,box-shadow .3s ease;padding:26px 24px;overflow-y:auto}
+    .mobile-menu.open{transform:none;box-shadow:-20px 0 60px -20px rgba(0,0,0,.4)}
     .mm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
     .mm-close{background:none;border:0;font-size:1.6rem;cursor:pointer;line-height:1;color:var(--ink)}
     .mobile-menu a{display:block;padding:14px 0;font-family:"Archivo";font-weight:700;font-size:1.4rem;border-bottom:1px solid var(--line)}

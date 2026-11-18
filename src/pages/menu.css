@@ -12,7 +12,7 @@
   .loc-chip p{color:var(--ink-2);font-size:.9rem;margin-top:2px}
   .loc-chip a.tel{color:var(--red);font-weight:700;font-size:.95rem;white-space:nowrap}
   .promo{margin-top:22px;background:var(--ink);color:var(--cream);border-radius:14px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-  .promo p{font-size:.98rem}
+  .promo p{font-size:.98rem;color:rgba(251,246,236,.85)}
   .promo b{color:#ff9aa6}
 
   /* menu content */
