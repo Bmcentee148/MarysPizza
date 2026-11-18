@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="light" />
 <title>Mary's Pizza and Pasta — Pizza, Pasta &amp; Catering | Speonk · Islip Terrace · Farmingdale, NY</title>
 <meta name="description" content="There's just something about Mary's. Hand-tossed pies, classic pasta dishes, hot heroes, and full-service catering across three Long Island locations — Speonk, Islip Terrace, and Farmingdale." />
+<link rel="canonical" href="https://maryspizzaandpasta.com/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,900&family=DM+Serif+Display:ital@0;1&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
@@ -102,7 +103,7 @@
   .mobile-menu{display:none}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;background:linear-gradient(180deg,rgba(10,4,4,.55) 0%,rgba(10,4,4,.75) 100%),url('assets/images/hero-bg.jpg') center/cover no-repeat;color:var(--cream);overflow:hidden;padding:76px 0 92px}
+  .hero{position:relative;background:linear-gradient(180deg,rgba(10,4,4,.55) 0%,rgba(10,4,4,.75) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;color:var(--cream);overflow:hidden;padding:76px 0 92px}
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(46% 60% at 82% 30%, rgba(208,8,30,.22), transparent 60%)}
   .hero::after{content:none}
@@ -374,15 +375,15 @@
 <!-- NAV -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a class="brand" href="#top" aria-label="Mary's Pizza and Pasta home">
-      <img src="assets/images/logo.png" alt="Mary's Pizza and Pasta logo" />
+    <a class="brand" href="/#top" aria-label="Mary's Pizza and Pasta home">
+      <img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta logo" />
       <span class="bt"><b>Mary's</b><span>Pizza &amp; Pasta</span></span>
     </a>
     <nav class="nav-links" aria-label="Primary">
-      <a href="#menu">Menu</a>
-      <a href="#catering">Catering</a>
-      <a href="#events">Private Events</a>
-      <a href="#locations">Locations</a>
+      <a href="/#menu">Menu</a>
+      <a href="/#catering">Catering</a>
+      <a href="/#events">Private Events</a>
+      <a href="/#locations">Locations</a>
     </nav>
     <div class="nav-cta">
       <div class="nav-loc">
@@ -393,7 +394,7 @@
           <option value="farmingdale">Farmingdale</option>
         </select>
       </div>
-      <a class="btn btn-red order-link" href="#" target="_blank" rel="noopener">Order Now</a>
+      <a class="btn btn-red order-link" href="__ORDER_URL__" target="_blank" rel="noopener">Order Now</a>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -406,11 +407,11 @@
     <b style="font-family:Archivo;font-weight:900;font-size:1.2rem">Mary's</b>
     <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
   </div>
-  <a href="#menu">Menu</a>
-  <a href="#catering">Catering</a>
-  <a href="#events">Private Events</a>
-  <a href="#locations">Locations &amp; Hours</a>
-  <a href="#order">Contact</a>
+  <a href="/#menu">Menu</a>
+  <a href="/#catering">Catering</a>
+  <a href="/#events">Private Events</a>
+  <a href="/#locations">Locations &amp; Hours</a>
+  <a href="/#order">Contact</a>
   <div class="mm-loc">
     <label for="locSwitcherMobile">Your location</label>
     <select id="locSwitcherMobile" aria-label="Choose your Mary's location">
@@ -419,9 +420,10 @@
       <option value="farmingdale">Farmingdale</option>
     </select>
   </div>
-  <a class="btn btn-red order-link" href="#" target="_blank" rel="noopener">Order Now</a>
+  <a class="btn btn-red order-link" href="__ORDER_URL__" target="_blank" rel="noopener">Order Now</a>
 </aside>
 
+<main id="main">
 <span id="top"></span>
 
 <!-- HERO -->
@@ -432,10 +434,10 @@
       <h1>Hand-tossed pies.<br />Slow-simmered <em>sauce.</em><br />Made the way you like it.</h1>
       <p class="lead">Hot pizza, sauce simmered from scratch, and pasta dishes done the right way — for dine-in, takeout, catering, and everything in between.</p>
       <div class="hero-cta">
-        <a class="btn btn-red" href="#menu">See the Menu</a>
-        <a class="btn btn-outline-cream order-link" href="#" target="_blank" rel="noopener">Order Now</a>
+        <a class="btn btn-red" href="/#menu">See the Menu</a>
+        <a class="btn btn-outline-cream order-link" href="__ORDER_URL__" target="_blank" rel="noopener">Order Now</a>
       </div>
-      <p class="hero-loc-note">Ordering from <b class="loc-name">Speonk</b> · <a href="#locations">change location</a></p>
+      <p class="hero-loc-note">Ordering from <b class="loc-name">Speonk</b> · <a href="/#locations">change location</a></p>
       <div class="hero-meta">
         <span><b>Dine-In</b></span><span class="dot">•</span>
         <span><b>Takeout</b></span><span class="dot">•</span>
@@ -444,7 +446,7 @@
       </div>
     </div>
     <div class="hero-badge reveal">
-      <img src="assets/images/hero-badge.png" alt="Mary's Pizza and Pasta" />
+      <img src="/assets/images/hero-badge.png" alt="Mary's Pizza and Pasta" />
     </div>
   </div>
 </section>
@@ -455,9 +457,9 @@
 <section class="photo-strip reveal">
   <div class="wrap">
     <div class="photo-grid">
-      <div class="photo-tile"><img src="assets/images/photo-chicken-parm.jpg" alt="Chicken parmigiana and appetizers at Mary's Pizza and Pasta" loading="lazy" /></div>
-      <div class="photo-tile photo-tile-sign"><img src="assets/images/photo-sign.jpg" alt="Mary's Pizza and Pasta metal sign" loading="lazy" /></div>
-      <div class="photo-tile"><img src="assets/images/photo-shrimp-risotto.jpg" alt="Shrimp risotto and cocktail at Mary's Pizza and Pasta" loading="lazy" /></div>
+      <div class="photo-tile"><img src="/assets/images/photo-chicken-parm.jpg" alt="Chicken parmigiana and appetizers at Mary's Pizza and Pasta" loading="lazy" /></div>
+      <div class="photo-tile photo-tile-sign"><img src="/assets/images/photo-sign.jpg" alt="Mary's Pizza and Pasta metal sign" loading="lazy" /></div>
+      <div class="photo-tile"><img src="/assets/images/photo-shrimp-risotto.jpg" alt="Shrimp risotto and cocktail at Mary's Pizza and Pasta" loading="lazy" /></div>
     </div>
   </div>
 </section>
@@ -514,13 +516,13 @@
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
         <h3>Takeout Menu</h3>
         <p>Pizza, pasta, heroes, and more — order ahead for pickup or delivery.</p>
-        <a class="btn btn-red" id="takeoutMenuLink" href="#" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Speonk</span> Takeout Menu</span></a>
+        <a class="btn btn-red" id="takeoutMenuLink" href="/takeout-menu-farmingdale-islip/" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Speonk</span> Takeout Menu</span></a>
       </div>
       <div class="menu-card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a10 10 0 0 1 20 0Z"/><path d="M2 20h20"/><path d="M12 4v3"/><circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/></svg></div>
         <h3>Catering Menu</h3>
         <p>Trays and packages built for groups, offices, and events.</p>
-        <a class="btn btn-ghost" id="cateringMenuLink" href="#" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Speonk</span> Catering Menu</span></a>
+        <a class="btn btn-ghost" id="cateringMenuLink" href="/catering-menu/" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Speonk</span> Catering Menu</span></a>
       </div>
     </div>
 
@@ -559,10 +561,10 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pickup or delivery across the area</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom spreads — just tell us the headcount</li>
         </ul>
-        <a class="btn btn-red" href="#order">Request a Catering Quote</a>
+        <a class="btn btn-red" href="/#order">Request a Catering Quote</a>
       </div>
       <div class="art">
-        <div class="art-badge"><img src="assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
+        <div class="art-badge"><img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
         <p class="art-tag">Feed the room without lifting a finger.</p>
       </div>
     </div>
@@ -582,10 +584,10 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fixed-price menus or buffet-style</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>BYO cake — we'll plate and serve it</li>
         </ul>
-        <a class="btn btn-cream" href="#locations">Call for Booking</a>
+        <a class="btn btn-cream" href="/#locations">Call for Booking</a>
       </div>
       <div class="art">
-        <div class="art-badge"><img src="assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
+        <div class="art-badge"><img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
         <p class="art-tag">Your table. Your people. Our kitchen.</p>
       </div>
     </div>
@@ -682,7 +684,7 @@
         <span class="eyebrow">Order &amp; Inquiries</span>
         <h2>Call it in, or send us a note</h2>
         <p>Fastest way to order takeout is a quick call to your closest location. For catering, private events, or big orders, drop the details below and we'll get right back to you.</p>
-        <a class="tel" href="#locations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>See all 3 locations</a>
+        <a class="tel" href="/#locations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>See all 3 locations</a>
       </div>
 
       <div id="formHost">
@@ -727,13 +729,14 @@
     </div>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img src="assets/images/logo.png" alt="Mary's Pizza and Pasta" />
+        <img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" />
         <div class="bt">
           <b>Mary's Pizza and Pasta</b>
           <p style="font-family:Archivo;font-style:italic;font-weight:600;font-size:1.05rem;color:#ffb3bd;margin-top:6px">"There's just something about Mary's."</p>
@@ -746,10 +749,10 @@
       </div>
       <div class="foot-col">
         <h4>Explore</h4>
-        <a href="#menu">Menu</a>
-        <a href="#catering">Catering</a>
-        <a href="#events">Private Events</a>
-        <a href="#locations">Visit &amp; Hours</a>
+        <a href="/#menu">Menu</a>
+        <a href="/#catering">Catering</a>
+        <a href="/#events">Private Events</a>
+        <a href="/#locations">Visit &amp; Hours</a>
       </div>
       <div class="foot-col">
         <h4>Our Locations</h4>
@@ -768,27 +771,26 @@
 
 <script>
   // ---- Location data --------------------------------------------------
-  // TODO: replace placeholder '#' links below with real URLs when ready.
   // orderUrl = HungerRush (or other) online ordering link for that location.
-  // takeoutMenuUrl / cateringMenuUrl = PDF or webpage links for that menu.
+  // takeoutMenuUrl / cateringMenuUrl = menu page URLs (root-relative, clean URLs).
   const LOCATIONS = {
     speonk: {
       name: 'Speonk',
-      orderUrl: 'https://maryspizza.hungerrush.com/Order/OrderType', // confirmed link
-      takeoutMenuUrl: 'takeout-menu-speonk.html',
-      cateringMenuUrl: 'catering-menu.html'
+      orderUrl: '__ORDER_URL__', // set in TEXT in build.py
+      takeoutMenuUrl: '/takeout-menu-speonk/',
+      cateringMenuUrl: '/catering-menu/'
     },
     islip: {
       name: 'Islip Terrace',
-      orderUrl: 'https://maryspizza.hungerrush.com/Order/OrderType', // confirmed link
-      takeoutMenuUrl: 'takeout-menu-farmingdale-islip.html', // shared Farmingdale/Islip Terrace takeout menu
-      cateringMenuUrl: 'catering-menu.html'
+      orderUrl: '__ORDER_URL__', // set in TEXT in build.py
+      takeoutMenuUrl: '/takeout-menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace takeout menu
+      cateringMenuUrl: '/catering-menu/'
     },
     farmingdale: {
       name: 'Farmingdale',
-      orderUrl: 'https://maryspizza.hungerrush.com/Order/OrderType', // confirmed link
-      takeoutMenuUrl: 'takeout-menu-farmingdale-islip.html', // shared Farmingdale/Islip Terrace takeout menu
-      cateringMenuUrl: 'catering-menu.html'
+      orderUrl: '__ORDER_URL__', // set in TEXT in build.py
+      takeoutMenuUrl: '/takeout-menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace takeout menu
+      cateringMenuUrl: '/catering-menu/'
     }
   };
   const DEFAULT_LOC = 'farmingdale'; // default location shown before a visitor picks one
@@ -871,8 +873,10 @@
     const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 16;
     window.scrollTo({top: Math.max(top, 0), behavior: behavior || 'smooth'});
   }
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    const id = a.getAttribute('href').slice(1);
+  document.querySelectorAll('a[href*="#"]').forEach(a => {
+    const url = new URL(a.href, location.href);
+    if(url.origin !== location.origin || url.pathname !== location.pathname) return;
+    const id = url.hash.slice(1);
     if(!id || !document.getElementById(id)) return;
     a.addEventListener('click', (e) => {
       e.preventDefault();
@@ -914,7 +918,7 @@
   const form = document.getElementById('inqForm');
   const host = document.getElementById('formHost');
   const encode = (data) => Object.keys(data).map(k => encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&');
-  form.addEventListener('submit', (e) => {
+  if(form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const obj = {};

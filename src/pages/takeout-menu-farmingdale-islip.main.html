@@ -1,109 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="light" />
-<title>Takeout Menu — Farmingdale &amp; Islip Terrace | Mary's Pizza and Pasta</title>
-<meta name="description" content="Full takeout menu for Mary's Pizza and Pasta in Farmingdale and Islip Terrace, NY — pizza, pasta, heroes, wings, entrees, and more." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,900&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --cream:#FBF6EC; --cream-2:#F4ECDC; --card:#FFFDF8;
-    --red:#D0081E; --red-deep:#A80518; --ink:#17130F; --ink-2:#4a4139; --ink-3:#7c7167;
-    --line:rgba(23,19,15,.12); --line-2:rgba(23,19,15,.08);
-    --maxw:1080px; --r:18px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;color-scheme:only light;overflow-x:hidden;max-width:100%}
-  @media (prefers-color-scheme:dark){ html,body{background-color:#FBF6EC !important;color:#17130F !important} }
-  body{overflow-x:hidden;max-width:100%}
-  body{font-family:"Libre Franklin",system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,.display{font-family:"Archivo",sans-serif}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-  .btn{display:inline-flex;align-items:center;gap:.5em;justify-content:center;font-weight:700;font-size:.96rem;
-    padding:.8em 1.4em;border-radius:999px;cursor:pointer;border:2px solid transparent;white-space:nowrap;transition:.18s ease}
-  .btn-red{background:var(--red);color:#fff;box-shadow:0 10px 22px -12px rgba(208,8,30,.85)}
-  .btn-red:hover{background:var(--red-deep);transform:translateY(-2px)}
-  .btn-ghost{border-color:var(--ink);color:var(--ink)}
-  .btn-ghost:hover{background:var(--ink);color:var(--cream)}
-
-  /* nav */
-  header.nav{position:sticky;top:0;z-index:50;background:rgba(251,246,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-2)}
-  .nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{width:46px;height:46px}
-  .brand .bt{line-height:1.05} .brand .bt b{font-weight:900;font-size:1.05rem;display:block}
-  .brand .bt span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
-  .back-link{font-weight:700;font-size:.9rem;color:var(--ink-2);display:flex;align-items:center;gap:6px}
-  .back-link svg{width:16px;height:16px}
-  .back-link:hover{color:var(--red)}
-
-  /* hero */
-  .menu-hero{padding:52px 0 40px;border-bottom:1px solid var(--line-2)}
-  .menu-hero .eyebrow{font-size:.76rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:.6em}
-  .menu-hero .eyebrow::before{content:"";width:26px;height:2px;background:var(--red)}
-  .menu-hero h1{font-weight:900;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1;margin:14px 0 0}
-  .menu-hero p{color:var(--ink-2);margin-top:14px;max-width:56ch;font-size:1.05rem}
-  .loc-strip{display:flex;flex-wrap:wrap;gap:16px;margin-top:26px}
-  .loc-chip{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:16px 20px;flex:1;min-width:240px;display:flex;justify-content:space-between;align-items:center;gap:14px}
-  .loc-chip h3{font-size:1.1rem;font-weight:800}
-  .loc-chip p{color:var(--ink-2);font-size:.9rem;margin-top:2px}
-  .loc-chip a.tel{color:var(--red);font-weight:700;font-size:.95rem;white-space:nowrap}
-  .promo{margin-top:22px;background:var(--ink);color:var(--cream);border-radius:14px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-  .promo p{font-size:.98rem}
-  .promo b{color:#ff9aa6}
-
-  /* menu content */
-  .menu-body{padding:52px 0 80px}
-  .menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:8px 56px}
-  .cat{break-inside:avoid;margin-bottom:26px}
-  .cat h2{font-weight:800;font-size:1.5rem;padding-bottom:10px;margin-bottom:6px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:10px}
-  .cat .sub{font-family:"Libre Franklin";font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-left:auto;text-align:right}
-  .cat .cat-note{font-size:.84rem;color:var(--ink-3);margin-bottom:10px;font-style:italic}
-  .item{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px dashed var(--line)}
-  .item:last-child{border-bottom:0}
-  .item .nm{font-weight:700;font-size:.98rem}
-  .item .nm small{display:block;font-weight:400;font-size:.8rem;color:var(--ink-3);letter-spacing:0;margin-top:0;line-height:1.35}
-  .item .leader{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-4px);min-width:10px}
-  .item .pr{font-variant-numeric:tabular-nums;font-weight:700;color:var(--red);white-space:nowrap}
-  .item .pr2{display:flex;gap:12px;font-variant-numeric:tabular-nums;font-weight:700;color:var(--red);white-space:nowrap}
-  .item .pr2 b{width:26px;text-align:right;display:inline-block}
-  .col-heads{display:flex;justify-content:flex-end;gap:12px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
-  .col-heads span{width:26px;text-align:right;display:inline-block}
-  .col-heads.wide span{width:30px}
-
-  .note-block{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 22px;font-size:.9rem;color:var(--ink-2);margin:8px 0 34px}
-  .note-block b{color:var(--ink)}
-
-  footer.pg{background:var(--ink);color:rgba(251,246,236,.7);padding:34px 0;text-align:center;font-size:.85rem}
-  footer.pg a{color:var(--cream);border-bottom:1px solid rgba(255,255,255,.25)}
-
-  @media (max-width:800px){
-    .menu-cols{grid-template-columns:1fr}
-    .brand .bt b{font-size:.92rem} .brand .bt span{font-size:.56rem;letter-spacing:.2em}
-    .nav-inner{gap:10px}
-    .back-link span{display:none}
-  }
-</style>
-</head>
-<body>
-
-<header class="nav">
-  <div class="nav-inner">
-    <a class="brand" href="index.html">
-      <img src="assets/images/logo.png" alt="Mary's Pizza and Pasta logo" />
-      <span class="bt"><b>Mary's</b><span>Pizza &amp; Pasta</span></span>
-    </a>
-    <a class="back-link" href="index.html#menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg><span>Back to all locations</span></a>
-    <a class="btn btn-red" href="https://maryspizza.hungerrush.com/Order/OrderType" target="_blank" rel="noopener">Order Now</a>
-  </div>
-</header>
-
 <section class="menu-hero">
   <div class="wrap">
     <span class="eyebrow">Takeout Menu</span>
@@ -121,7 +15,7 @@
     </div>
     <div class="promo">
       <p><b>10% off online orders</b> — use code <b>PIZZA10</b> at checkout.</p>
-      <a class="btn btn-ghost" style="border-color:rgba(251,246,236,.5);color:var(--cream)" href="https://maryspizza.hungerrush.com/Order/OrderType" target="_blank" rel="noopener">Order Online</a>
+      <a class="btn btn-ghost" style="border-color:rgba(251,246,236,.5);color:var(--cream)" href="__ORDER_URL__" target="_blank" rel="noopener">Order Online</a>
     </div>
   </div>
 </section>
@@ -334,12 +228,3 @@
     </div>
   </div>
 </section>
-
-<footer class="pg">
-  <div class="wrap">
-    <p>Mary's Pizza and Pasta · Farmingdale &amp; Islip Terrace, NY · <a href="index.html">Back to marys­pizzaandpasta.com</a></p>
-  </div>
-</footer>
-
-</body>
-</html>
