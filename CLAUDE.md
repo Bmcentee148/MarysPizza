@@ -17,8 +17,8 @@ Each page is fully self-contained: CSS is duplicated per file (same `:root` colo
 
 ## Working with the files
 
-- **Images are embedded as base64 `data:` URIs**, so some lines are 65K–235K characters long (the logo alone is ~87K and repeats on every page). Don't `cat`/`Read` whole files or print raw grep matches — truncate output (e.g. `cut -c1-200`) and use line ranges. Edit around these lines, not through them.
-- `TempPics/` holds source photos; they are not referenced by the pages (images are inlined instead).
+- Images live in `assets/images/` and are referenced by relative path (`assets/images/logo.png`), including the hero background `url()` in `index.html`'s CSS. Don't inline images as base64 `data:` URIs.
+- `TempPics/` holds source photos; they are not referenced by the pages.
 
 ## `index.html` JavaScript
 
