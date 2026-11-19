@@ -49,3 +49,25 @@
     .lb-fig img{max-height:calc(100vh - 190px);max-height:calc(100dvh - 190px)}
     .lb-fig figcaption{flex-direction:column;gap:4px;align-items:center;text-align:center;padding-bottom:64px}
   }
+
+  /* Instagram invite, between the photos and "Hungry yet?" */
+  .g-ig-link{color:var(--red);font-weight:700;border-bottom:1px solid rgba(208,8,30,.35)}
+  .g-ig-link:hover{border-color:var(--red)}
+  .g-insta{padding:0 0 64px}
+  .g-insta-card{background:var(--ink);color:var(--cream);border-radius:20px;padding:32px 36px;display:flex;align-items:center;gap:28px;
+    background-image:radial-gradient(60% 120% at 100% 0%,rgba(208,8,30,.28),transparent 60%)}
+  .g-insta-icon{flex:none;width:68px;height:68px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,#f9ce34,#ee2a7b 55%,#6228d7)}
+  .g-insta-icon svg{width:36px;height:36px;color:#fff}
+  .g-insta-copy{flex:1;min-width:0}
+  .g-insta .eyebrow{color:#ff9aa6}
+  .g-insta .eyebrow::before{background:#ff9aa6}
+  .g-insta h2{font-weight:900;font-size:clamp(1.5rem,3vw,2rem);line-height:1.1;margin-top:8px}
+  .g-insta p{color:rgba(251,246,236,.8);margin-top:8px;max-width:none;font-size:1rem}
+  .g-insta p b{color:var(--cream)}
+  .g-insta .btn{flex:none;white-space:nowrap}
+  @media (max-width:720px){
+    .g-insta{padding-bottom:48px}
+    .g-insta-card{flex-direction:column;align-items:flex-start;gap:18px;padding:26px 22px}
+    .g-insta .btn{width:100%}
+  }
