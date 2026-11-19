@@ -340,15 +340,9 @@
     .feature .art{min-height:260px}
     .foot-grid{grid-template-columns:1fr 1fr}
   }
-  @media (max-width:720px){
-    .hero h1{font-size:clamp(2.1rem,9.5vw,2.6rem)}
+  /* below 1024px the full nav doesn't fit, so the header switches to the ☰ menu */
+  @media (max-width:1023px){
     .nav-links,.nav-phone,.nav-loc{display:none}
-    .nav-cta{gap:8px}
-    .nav-cta .btn{padding:.6em 1.05em;font-size:.9rem}
-    .brand{gap:9px}
-    .brand img{width:40px;height:40px}
-    .brand .bt b{font-size:.92rem}
-    .brand .bt span{font-size:.56rem;letter-spacing:.2em}
     .burger{display:flex}
     .mobile-menu{display:block;position:fixed;inset:0 0 0 auto;width:min(320px,84vw);background:var(--cream);z-index:70;
       transform:translateX(100%);transition:transform .3s ease,box-shadow .3s ease;padding:26px 24px;overflow-y:auto}
@@ -362,6 +356,15 @@
     .mm-loc select{width:100%;font-family:"Libre Franklin";font-weight:700;font-size:1rem;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:.7em .9em}
     .mm-overlay{position:fixed;inset:0;background:rgba(23,19,15,.5);z-index:69;opacity:0;pointer-events:none;transition:opacity .3s}
     .mm-overlay.open{opacity:1;pointer-events:auto}
+  }
+  @media (max-width:720px){
+    .hero h1{font-size:clamp(2.1rem,9.5vw,2.6rem)}
+    .nav-cta{gap:8px}
+    .nav-cta .btn{padding:.6em 1.05em;font-size:.9rem}
+    .brand{gap:9px}
+    .brand img{width:40px;height:40px}
+    .brand .bt b{font-size:.92rem}
+    .brand .bt span{font-size:.56rem;letter-spacing:.2em}
     .section{padding:64px 0}
     .feature .copy,.form-wrap{padding-left:0;padding-right:0}
     .feature .copy{padding:36px 26px}
@@ -383,6 +386,7 @@
       <a href="/#menu">Menu</a>
       <a href="/#catering">Catering</a>
       <a href="/#events">Private Events</a>
+      <a href="/gallery/">Gallery</a>
       <a href="/#locations">Locations</a>
     </nav>
     <div class="nav-cta">
@@ -410,6 +414,7 @@
   <a href="/#menu">Menu</a>
   <a href="/#catering">Catering</a>
   <a href="/#events">Private Events</a>
+  <a href="/gallery/">Gallery</a>
   <a href="/#locations">Locations &amp; Hours</a>
   <a href="/#order">Contact</a>
   <div class="mm-loc">
@@ -752,6 +757,7 @@
         <a href="/#menu">Menu</a>
         <a href="/#catering">Catering</a>
         <a href="/#events">Private Events</a>
+        <a href="/gallery/">Gallery</a>
         <a href="/#locations">Visit &amp; Hours</a>
       </div>
       <div class="foot-col">
