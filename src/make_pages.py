@@ -35,6 +35,12 @@ PAGES = {
         "description": "Catering menu for Mary's Pizza and Pasta — platters, packages, entrees, and party heroes for offices, parties, and events. Serving Speonk, Islip Terrace, and Farmingdale, NY.",
         "css": ["menu.css"],
     },
+    "gallery": {
+        "title": "Gallery | Mary's Pizza and Pasta",
+        "description": "Photos of the food, dining room and bar at Mary's Pizza and Pasta on Long Island: pizza, pasta, chicken parm and more.",
+        "css": ["gallery.css"],
+        "js": ["gallery.js"],
+    },
 }
 
 MAIN_OPEN = '<main id="main">'
