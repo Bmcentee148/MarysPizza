@@ -41,6 +41,11 @@ PAGES = {
         "css": ["gallery.css"],
         "js": ["gallery.js"],
     },
+    "contact": {
+        "title": "Contact | Mary's Pizza and Pasta",
+        "description": "Call Mary's Pizza and Pasta in Speonk, Islip Terrace or Farmingdale, or send us a note about catering, private events and big orders.",
+        "css": ["contact.css"],
+    },
 }
 
 MAIN_OPEN = '<main id="main">'

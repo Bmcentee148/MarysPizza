@@ -1,0 +1,74 @@
+<section class="c-hero">
+  <div class="wrap">
+    <span class="eyebrow">Contact</span>
+    <h1>Call it in, or send us a note</h1>
+    <p>The fastest way to order takeout is a quick call to your closest location. For catering, private events or big orders, send us the details below and we'll get right back to you.</p>
+    <div class="c-locs">
+      <a class="c-loc" href="tel:+16318016600"><b>Speonk</b><span>190 Montauk Highway</span><em>(631) 801-6600</em></a>
+      <a class="c-loc" href="tel:+16312771590"><b>Islip Terrace</b><span>876 Connetquot Avenue</span><em>(631) 277-1590</em></a>
+      <a class="c-loc" href="tel:+15165865917"><b>Farmingdale</b><span>611 Main Street</span><em>(516) 586-5917</em></a>
+    </div>
+    <p class="c-email">Prefer email? <a href="mailto:somethingaboutmarys@gmail.com">somethingaboutmarys@gmail.com</a> · <a href="/#locations">Hours &amp; directions</a></p>
+  </div>
+</section>
+
+<section class="section form-section c-form" id="inquiry">
+  <div class="wrap">
+    <div class="form-wrap">
+      <div class="form-intro">
+        <span class="eyebrow">Send us a note</span>
+        <h2>Tell us what you need</h2>
+        <p>Catering for the office, a party in our private room, a big order for the game, or just a question. Fill this out and we'll call or email you back.</p>
+      </div>
+
+      <div id="formHost">
+        <form class="inq" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="inqForm">
+          <input type="hidden" name="form-name" value="inquiry" />
+          <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
+          <div class="row2">
+            <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name" /></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" /></div>
+          </div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" /></div>
+          <div class="row2">
+            <div class="field">
+              <label for="type">What can we help with?</label>
+              <select id="type" name="inquiry_type">
+                <option>Takeout / large order</option>
+                <option>Catering quote</option>
+                <option>Private event</option>
+                <option>General question</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="loc">Which location?</label>
+              <select id="loc" name="location">
+                <option>Speonk</option>
+                <option>Islip Terrace</option>
+                <option>Farmingdale</option>
+                <option>No preference</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="msg">Details</label><textarea id="msg" name="message" placeholder="Date, headcount, what you're thinking..."></textarea></div>
+          <div class="form-error" id="formError" role="alert" hidden>
+            <b>Sorry, that didn't go through.</b> Check your connection and try again, or give us a call:
+            <ul class="err-phones">
+              <li><span>Speonk</span><a href="tel:+16318016600">(631) 801-6600</a></li>
+              <li><span>Islip Terrace</span><a href="tel:+16312771590">(631) 277-1590</a></li>
+              <li><span>Farmingdale</span><a href="tel:+15165865917">(516) 586-5917</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-red" type="submit">Send it over</button>
+          <p class="form-note">We'll reply as fast as we're out of the oven. Usually same day.</p>
+        </form>
+        <div class="form-status">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg>
+          <h3>Got it — thank you!</h3>
+          <p>Your message is in. We'll be in touch shortly. Hungry now? Give us a call:</p>
+          <p class="form-phones"><a href="tel:+16318016600">Speonk (631) 801-6600</a> · <a href="tel:+16312771590">Islip Terrace (631) 277-1590</a> · <a href="tel:+15165865917">Farmingdale (516) 586-5917</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

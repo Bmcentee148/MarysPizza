@@ -1,0 +1,20 @@
+/* Contact page styles. Inlined into the contact page only, after the site-wide styles in index.html.
+   The form itself uses the site-wide .form-section / form.inq styles. */
+  .c-hero{padding:52px 0 44px}
+  .c-hero h1{font-weight:900;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1;margin:14px 0 0}
+  .c-hero > .wrap > p{color:var(--ink-2);margin-top:14px;max-width:58ch;font-size:1.05rem}
+  .c-locs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+  .c-loc{display:flex;flex-direction:column;gap:2px;background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 22px;transition:border-color .18s ease,transform .18s ease}
+  .c-loc:hover{border-color:var(--red);transform:translateY(-2px)}
+  .c-loc b{font-family:"Archivo";font-weight:800;font-size:1.15rem}
+  .c-loc span{color:var(--ink-2);font-size:.92rem}
+  .c-loc em{font-style:normal;font-family:"Archivo";font-weight:800;font-size:1.3rem;color:var(--red);margin-top:6px}
+  .c-email{margin-top:18px;color:var(--ink-2);font-size:.95rem}
+  .c-email a{color:var(--red);font-weight:600;border-bottom:1px solid rgba(208,8,30,.3)}
+  .c-form .form-wrap{margin-top:0}
+  @media (max-width:800px){
+    .c-locs{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .c-hero{padding:40px 0 32px}
+  }
