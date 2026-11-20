@@ -28,11 +28,13 @@
     --r:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;color-scheme:only light;forced-color-adjust:none;overflow-x:clip;max-width:100%}
+  html{scroll-behavior:smooth;color-scheme:only light;forced-color-adjust:none;overflow-x:hidden;max-width:100%}
   @media (prefers-color-scheme:dark){
     html,body{background-color:#FBF6EC !important;color:#17130F !important}
   }
-  /* overflow-x:clip (not hidden) stops sideways scrolling without breaking the sticky header */
+  /* html overflow-x:hidden goes to the viewport and stops sideways panning (incl. iPhones, where the
+     off-screen menu could otherwise be dragged into view). body must be clip, not hidden: hidden on
+     body makes it a scroll container and breaks the sticky header. */
   body{overflow-x:clip;max-width:100%}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{
@@ -411,6 +413,12 @@
     .feature .copy{padding:36px 26px}
     .story .stats{gap:24px}
     .foot-grid{grid-template-columns:1fr}
+  }
+  /* smallest phones (e.g. original iPhone SE, 320px): shrink the header so the menu button fits */
+  @media (max-width:360px){
+    .brand img,header.nav.scrolled .brand img{height:36px}
+    .nav-cta .btn{padding:.55em .85em;font-size:.84rem}
+    .burger{padding:6px}
   }
 </style>
 </head>
