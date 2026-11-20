@@ -271,6 +271,26 @@
   .form-status p{color:var(--ink-2);margin-top:8px}
   .is-sent form.inq{display:none}
   .is-sent .form-status{display:block}
+  .form-error{background:#fdecee;border:1px solid rgba(208,8,30,.3);color:var(--ink);border-radius:12px;padding:14px 16px;margin-bottom:14px;font-size:.92rem;line-height:1.5}
+  .form-error b{color:var(--red-deep)}
+  .form-phones{display:block;margin-top:6px}
+  .err-phones{list-style:none;margin-top:10px;border-top:1px solid rgba(208,8,30,.18)}
+  .err-phones li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:7px 0;border-bottom:1px solid rgba(208,8,30,.12)}
+  .err-phones li:last-child{border-bottom:0;padding-bottom:0}
+  .err-phones span{font-weight:600;color:var(--ink-2)}
+  .err-phones a{color:var(--red);font-weight:700;white-space:nowrap}
+  .form-phones a{color:var(--red);font-weight:700;white-space:nowrap}
+  .form-status .form-phones{margin-top:10px;font-size:.95rem}
+  form.inq .btn:disabled{opacity:.7;cursor:wait;transform:none}
+  .contact-card{background:var(--ink);color:var(--cream);border-radius:20px;padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:28px;
+    background-image:radial-gradient(60% 120% at 100% 0%,rgba(208,8,30,.28),transparent 60%)}
+  .contact-card .eyebrow{color:#ff9aa6}
+  .contact-card .eyebrow::before{background:#ff9aa6}
+  .contact-card h2{font-weight:900;font-size:clamp(1.6rem,3.2vw,2.2rem);line-height:1.08;margin-top:10px}
+  .contact-card p{color:rgba(251,246,236,.8);margin-top:10px;max-width:52ch}
+  .contact-card .btn{flex:none;white-space:nowrap}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px}
+  @media (max-width:720px){.contact-card{flex-direction:column;align-items:flex-start;gap:20px;padding:26px 22px}.contact-card .btn{width:100%}}
 
   /* footer */
   footer{background:var(--ink);color:var(--cream);padding:60px 0 30px;position:relative;overflow:hidden}
@@ -385,9 +405,9 @@
     <nav class="nav-links" aria-label="Primary">
       <a href="/#menu">Menu</a>
       <a href="/#catering">Catering</a>
-      <a href="/#events">Private Events</a>
       <a href="/gallery/">Gallery</a>
       <a href="/#locations">Locations</a>
+      <a href="/contact/">Contact</a>
     </nav>
     <div class="nav-cta">
       <div class="nav-loc">
@@ -413,10 +433,9 @@
   </div>
   <a href="/#menu">Menu</a>
   <a href="/#catering">Catering</a>
-  <a href="/#events">Private Events</a>
   <a href="/gallery/">Gallery</a>
   <a href="/#locations">Locations &amp; Hours</a>
-  <a href="/#order">Contact</a>
+  <a href="/contact/">Contact</a>
   <div class="mm-loc">
     <label for="locSwitcherMobile">Your location</label>
     <select id="locSwitcherMobile" aria-label="Choose your Mary's location">
@@ -566,7 +585,7 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Pickup or delivery across the area</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Custom spreads — just tell us the headcount</li>
         </ul>
-        <a class="btn btn-red" href="/#order">Request a Catering Quote</a>
+        <a class="btn btn-red" href="/contact/?type=catering">Request a Catering Quote</a>
       </div>
       <div class="art">
         <div class="art-badge"><img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
@@ -589,7 +608,10 @@
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Fixed-price menus or buffet-style</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>BYO cake — we'll plate and serve it</li>
         </ul>
-        <a class="btn btn-cream" href="/#locations">Call for Booking</a>
+        <div class="btn-row">
+          <a class="btn btn-cream" href="/#locations">Call for Booking</a>
+          <a class="btn btn-outline-cream" href="/contact/?type=event">Send Us the Details</a>
+        </div>
       </div>
       <div class="art">
         <div class="art-badge"><img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
@@ -681,56 +703,16 @@
   </div>
 </section>
 
-<!-- ORDER / CONTACT FORM -->
-<section class="section form-section" id="order">
+<!-- CONTACT CTA -->
+<section class="section tight contact-band">
   <div class="wrap">
-    <div class="form-wrap">
-      <div class="form-intro reveal">
-        <span class="eyebrow">Order &amp; Inquiries</span>
-        <h2>Call it in, or send us a note</h2>
-        <p>Fastest way to order takeout is a quick call to your closest location. For catering, private events, or big orders, drop the details below and we'll get right back to you.</p>
-        <a class="tel" href="/#locations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>See all 3 locations</a>
+    <div class="contact-card reveal">
+      <div>
+        <span class="eyebrow">Get in touch</span>
+        <h2>Planning a party or a big order?</h2>
+        <p>Catering, private events or just a question. Send us the details and we'll get right back to you.</p>
       </div>
-
-      <div id="formHost">
-        <form class="inq" name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="inqForm">
-          <input type="hidden" name="form-name" value="inquiry" />
-          <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
-          <div class="row2">
-            <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" required autocomplete="name" /></div>
-            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" required autocomplete="tel" /></div>
-          </div>
-          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" /></div>
-          <div class="row2">
-            <div class="field">
-              <label for="type">What can we help with?</label>
-              <select id="type" name="inquiry_type">
-                <option>Takeout / large order</option>
-                <option>Catering quote</option>
-                <option>Private event</option>
-                <option>General question</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="loc">Which location?</label>
-              <select id="loc" name="location">
-                <option>Speonk</option>
-                <option>Islip Terrace</option>
-                <option>Farmingdale</option>
-                <option>No preference</option>
-              </select>
-            </div>
-          </div>
-          <div class="field"><label for="msg">Details</label><textarea id="msg" name="message" placeholder="Date, headcount, what you're thinking..."></textarea></div>
-          <button class="btn btn-red" type="submit">Send it over</button>
-          <p class="form-note">We'll reply as fast as we're out of the oven. Usually same day.</p>
-        </form>
-        <div class="form-status">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m22 4-10 10.01-3-3"/></svg>
-          <h3>Got it — thank you!</h3>
-          <p>Your message is in. We'll be in touch shortly. Hungry now? Give us a call at (631) 801-6600.</p>
-        </div>
-      </div>
+      <a class="btn btn-red" href="/contact/">Contact Us</a>
     </div>
   </div>
 </section>
@@ -759,6 +741,7 @@
         <a href="/#events">Private Events</a>
         <a href="/gallery/">Gallery</a>
         <a href="/#locations">Visit &amp; Hours</a>
+        <a href="/contact/">Contact</a>
       </div>
       <div class="foot-col">
         <h4>Our Locations</h4>
@@ -950,14 +933,30 @@
   const form = document.getElementById('inqForm');
   const host = document.getElementById('formHost');
   const encode = (data) => Object.keys(data).map(k => encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&');
+  if(form){
+    // /contact/?type=catering or ?type=event opens the form with that inquiry type chosen
+    const want = {catering:'Catering quote', event:'Private event'}[new URLSearchParams(location.search).get('type')];
+    if(want) document.getElementById('type').value = want;
+  }
   if(form) form.addEventListener('submit', (e) => {
     e.preventDefault();
     const fd = new FormData(form);
     const obj = {};
     fd.forEach((v,k) => obj[k]=v);
+    const btn = form.querySelector('button[type=submit]'), err = document.getElementById('formError');
+    const label = btn.textContent;
+    if(err) err.hidden = true;
+    btn.disabled = true; btn.textContent = 'Sending...';
     fetch('/', {method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: encode(obj)})
-      .then(() => { host.classList.add('is-sent'); host.scrollIntoView({behavior:'smooth', block:'center'}); })
-      .catch(() => { host.classList.add('is-sent'); });
+      .then((res) => {
+        if(!res.ok) throw new Error('HTTP ' + res.status);
+        host.classList.add('is-sent'); host.scrollIntoView({behavior:'smooth', block:'center'});
+      })
+      .catch(() => {
+        // keep what they typed so they can retry, and show the phone numbers
+        if(err){ err.hidden = false; err.scrollIntoView({behavior:'smooth', block:'center'}); }
+      })
+      .finally(() => { btn.disabled = false; btn.textContent = label; });
   });
 </script>
 </body>

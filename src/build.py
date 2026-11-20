@@ -193,13 +193,13 @@ def check_page(name, html, scans, site_url, errors, notes):
 
 def check_site_rules(scans, errors):
     """Project-specific content rules."""
-    home = scans["index"]
-    netlify_forms = [f for f in home.forms if "data-netlify" in f]
+    page = scans["contact"]  # the inquiry form lives on /contact/
+    netlify_forms = [f for f in page.forms if "data-netlify" in f]
     if not netlify_forms:
-        errors.append('/: the inquiry form must keep data-netlify="true" so Netlify Forms detects it')
+        errors.append('/contact/: the inquiry form must keep data-netlify="true" so Netlify Forms detects it')
     for f in netlify_forms:
-        if not any(i.get("name") == "form-name" and i.get("value") == f.get("name") for i in home.hidden_inputs):
-            errors.append(f'/: Netlify form {f.get("name")!r} needs <input type="hidden" name="form-name" value="{f.get("name")}">')
+        if not any(i.get("name") == "form-name" and i.get("value") == f.get("name") for i in page.hidden_inputs):
+            errors.append(f'/contact/: Netlify form {f.get("name")!r} needs <input type="hidden" name="form-name" value="{f.get("name")}">')
 
 
 def write_sitemap(site_url, names):
