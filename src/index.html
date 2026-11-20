@@ -28,11 +28,12 @@
     --r:18px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;color-scheme:only light;forced-color-adjust:none;overflow-x:hidden;max-width:100%}
+  html{scroll-behavior:smooth;color-scheme:only light;forced-color-adjust:none;overflow-x:clip;max-width:100%}
   @media (prefers-color-scheme:dark){
     html,body{background-color:#FBF6EC !important;color:#17130F !important}
   }
-  body{overflow-x:hidden;max-width:100%}
+  /* overflow-x:clip (not hidden) stops sideways scrolling without breaking the sticky header */
+  body{overflow-x:clip;max-width:100%}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   body{
     font-family:"Libre Franklin",system-ui,sans-serif;
@@ -40,7 +41,6 @@
     color:var(--ink);
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
   }
   h1,h2,h3,.display{font-family:"Archivo",Georgia,serif}
   a{color:inherit;text-decoration:none}
