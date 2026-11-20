@@ -46,6 +46,12 @@ PAGES = {
         "description": "Call Mary's Pizza and Pasta in Speonk, Islip Terrace or Farmingdale, or send us a note about catering, private events and big orders.",
         "css": ["contact.css"],
     },
+    "promotions": {
+        "title": "Promotions | Mary's Pizza and Pasta",
+        "description": "Current specials and seasonal deals at Mary's Pizza and Pasta in Speonk, Islip Terrace and Farmingdale: gift card sales, holiday catering packages and more.",
+        "css": ["promotions.css"],
+        "js": ["promotions.js"],
+    },
 }
 
 MAIN_OPEN = '<main id="main">'
