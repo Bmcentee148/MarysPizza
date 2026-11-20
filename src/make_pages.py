@@ -52,6 +52,19 @@ PAGES = {
         "css": ["promotions.css"],
         "js": ["promotions.js"],
     },
+    "speonk": {
+        "title": "Speonk Pizza &amp; Italian Restaurant | Mary's at the Olde Speonk Inn",
+        "description": "Mary's Pizza and Pasta in Speonk, NY: hand-tossed pizza, pasta and a full bar at the Olde Speonk Inn, 190 Montauk Highway. Dine-in, takeout, catering and a private party room. (631) 801-6600.",
+        "css": ["location.css"],
+    },
+    # Served by Netlify for any URL that doesn't exist (dist/404.html). noindex: no
+    # canonical, a robots noindex tag, and left out of the sitemap.
+    "404": {
+        "title": "Page Not Found | Mary's Pizza and Pasta",
+        "description": "This page couldn't be found. Find the menu, locations and hours for Mary's Pizza and Pasta in Speonk, Islip Terrace and Farmingdale.",
+        "css": ["404.css"],
+        "noindex": True,
+    },
 }
 
 MAIN_OPEN = '<main id="main">'
@@ -93,8 +106,12 @@ def make_page(name, cfg, head, foot, home_canonical):
     home_desc = between(head, '<meta name="description" content="', '"', "index.html meta description")
     page_head = must_replace(page_head, f'<meta name="description" content="{home_desc}"',
                              f'<meta name="description" content="{cfg["description"]}"', f"{name} description")
-    page_head = must_replace(page_head, f'<link rel="canonical" href="{home_canonical}"',
-                             f'<link rel="canonical" href="{home_canonical}{name}/"', f"{name} canonical")
+    if cfg.get("noindex"):
+        page_head = must_replace(page_head, f'<link rel="canonical" href="{home_canonical}" />',
+                                 '<meta name="robots" content="noindex" />', f"{name} noindex")
+    else:
+        page_head = must_replace(page_head, f'<link rel="canonical" href="{home_canonical}"',
+                                 f'<link rel="canonical" href="{home_canonical}{name}/"', f"{name} canonical")
 
     for css_file in cfg.get("css", []):
         css = (SRC / "pages" / css_file).read_text(encoding="utf-8")

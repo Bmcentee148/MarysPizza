@@ -29,7 +29,7 @@ TEXT = {
 
 # Pages that are linked to but not built yet (e.g. "/about/"). Links to these
 # don't fail the build. Keep empty unless you're adding a page in stages.
-PLANNED = set()
+PLANNED = {"/islip-terrace/", "/farmingdale/"}
 
 TOKEN_RE = re.compile(r"__[A-Z0-9]+(?:_[A-Z0-9]+)*__")
 
@@ -122,9 +122,13 @@ def check_page(name, html, scans, site_url, errors, notes):
         err(f"unreplaced placeholder {token} (add it to TEXT in build.py?)")
 
     # canonical: exactly one, absolute, self-referencing
-    expected = site_url.rstrip("/") + where
-    if scan.canonicals != [expected]:
-        err(f"canonical should be exactly [{expected!r}], found {scan.canonicals!r}")
+    if PAGES.get(name, {}).get("noindex"):
+        if scan.canonicals:
+            err(f"noindex page shouldn't have a canonical, found {scan.canonicals!r}")
+    else:
+        expected = site_url.rstrip("/") + where
+        if scan.canonicals != [expected]:
+            err(f"canonical should be exactly [{expected!r}], found {scan.canonicals!r}")
 
     if scan.mains != 1:
         err(f"expected exactly one <main>, found {scan.mains}")
@@ -248,12 +252,14 @@ def build():
     assert set(sources) == {"index", *PAGES}
 
     pages = {name: fill_text(path.read_text(encoding="utf-8")) for name, path in sources.items()}
+    # __SITE_URL__ (e.g. in structured data) = the production domain from the homepage canonical
+    site_url = between(pages["index"], '<link rel="canonical" href="', '"', "index.html canonical")
+    pages = {name: html.replace("__SITE_URL__", site_url.rstrip("/")) for name, html in pages.items()}
     scans = {}
     for name, html in pages.items():
         scans[name] = PageScan()
         scans[name].feed(html)
 
-    site_url = between(pages["index"], '<link rel="canonical" href="', '"', "index.html canonical")
 
     errors, notes = [], []
     for token, value in TEXT.items():
@@ -274,7 +280,7 @@ def build():
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(html, encoding="utf-8")
         print(f"  {str(out.relative_to(DIST.parent)):<46} {url_for(name):<34} {len(html.encode()) / 1024:6.1f} KB")
-    write_sitemap(site_url, pages)
+    write_sitemap(site_url, [n for n in pages if not PAGES.get(n, {}).get("noindex")])
     print("  dist/sitemap.xml")
     for note in notes:
         print(f"NOTE: {note}")
