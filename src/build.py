@@ -8,6 +8,7 @@ same command on every push (see netlify.toml) and publishes dist/.
 Standard library only, no installs needed.
 """
 import re
+from datetime import date
 import shutil
 import sys
 from html.parser import HTMLParser
@@ -202,6 +203,21 @@ def check_site_rules(scans, errors):
             errors.append(f'/contact/: Netlify form {f.get("name")!r} needs <input type="hidden" name="form-name" value="{f.get("name")}">')
 
 
+def check_promo_dates(pages, errors, notes):
+    """Promotions carry data-ends="YYYY-MM-DD" (last day shown). The page hides them
+    after that date; this reminds you to delete the expired ones."""
+    today = date.today()
+    for name, html in pages.items():
+        for value in re.findall(r'data-ends="([^"]*)"', html):
+            try:
+                ends = date.fromisoformat(value)
+            except ValueError:
+                errors.append(f'{url_for(name)}: data-ends="{value}" must be a date like 2026-12-31')
+                continue
+            if ends < today:
+                notes.append(f"{url_for(name)}: a promotion ended on {value} and is hidden; remove it from src/pages/{name}.main.html")
+
+
 def write_sitemap(site_url, names):
     base = site_url.rstrip("/")
     urls = "".join(f"  <url><loc>{base}{url_for(n)}</loc></url>\n" for n in names)
@@ -246,6 +262,7 @@ def build():
     for name, html in pages.items():
         check_page(name, html, scans, site_url, errors, notes)
     check_site_rules(scans, errors)
+    check_promo_dates(pages, errors, notes)
 
     if errors:
         print("BUILD FAILED:\n  " + "\n  ".join(errors), file=sys.stderr)
