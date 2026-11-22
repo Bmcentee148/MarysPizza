@@ -233,6 +233,10 @@
   .art-badge img{filter:drop-shadow(0 16px 26px rgba(23,19,15,.18))}
   .art-tag{position:relative;z-index:2;margin-top:22px;font-family:"Archivo";font-style:italic;font-weight:600;font-size:1.4rem;color:var(--cream);text-align:center;max-width:22ch}
   .feature.dark .art-tag{color:var(--ink)}
+  /* photo version of the art panel: the image fills the panel */
+  .feature .art.art-photo{padding:0;background:var(--ink)}
+  .feature .art.art-photo::before{display:none}
+  .art-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:28% 62%}
   .feature.reverse .copy{order:2}
   .feature.reverse .art{order:1}
 
@@ -645,9 +649,8 @@
           <a class="btn btn-outline-cream" href="/contact/?type=event">Send Us the Details</a>
         </div>
       </div>
-      <div class="art">
-        <div class="art-badge"><img src="/assets/images/logo.png" alt="Mary's Pizza and Pasta" /></div>
-        <p class="art-tag">Your table. Your people. Our kitchen.</p>
+      <div class="art art-photo">
+        <img src="/assets/images/private-event-room.webp" alt="Mary's dining room set up for a private party, with a buffet of chafing dishes and long dressed tables" width="1200" height="900" loading="lazy" />
       </div>
     </div>
   </div>
