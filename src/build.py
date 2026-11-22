@@ -25,6 +25,9 @@ DIST = SRC.parent / "dist"
 # Any value containing "TODO" prints a NOTE on every build until it's filled in.
 TEXT = {
     "__ORDER_URL__": "https://maryspizza.hungerrush.com/Order/OrderType",
+    # OpenTable pages (Farmingdale takes reservations by phone only)
+    "__RESERVE_SPEONK__": "https://www.opentable.com/r/marys-pizza-and-pasta-speonk",
+    "__RESERVE_ISLIP__": "https://www.opentable.com/r/marys-pizza-and-restaurant-islip-terrace",
 }
 
 # Pages that are linked to but not built yet (e.g. "/about/"). Links to these

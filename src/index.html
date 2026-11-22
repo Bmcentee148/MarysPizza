@@ -123,7 +123,8 @@
   .mobile-menu{display:none}
 
   /* ---------- HERO ---------- */
-  .hero{position:relative;background:linear-gradient(180deg,rgba(10,4,4,.55) 0%,rgba(10,4,4,.75) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;color:var(--cream);overflow:hidden;padding:76px 0 92px}
+  .hero{position:relative;background:linear-gradient(180deg,rgba(10,4,4,.55) 0%,rgba(10,4,4,.75) 100%),url('/assets/images/hero-bg.jpg') center/cover no-repeat;color:var(--cream);overflow:visible;overflow-x:clip;padding:76px 0 92px}
+  /* overflow-y stays visible so the Reserve a Table chooser can open past the bottom of the hero */
   .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(46% 60% at 82% 30%, rgba(208,8,30,.22), transparent 60%)}
   .hero::after{content:none}
@@ -139,6 +140,19 @@
   .hero h1 em{font-style:italic;color:var(--red);font-weight:900}
   .hero p.lead{font-size:1.14rem;color:rgba(251,246,236,.85);max-width:34ch;margin-top:20px}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+  /* Reserve a Table: a <details> dropdown listing the three locations */
+  .reserve-drop{position:relative}
+  .reserve-drop summary{list-style:none;cursor:pointer}
+  .reserve-drop summary::-webkit-details-marker{display:none}
+  .reserve-menu{position:absolute;top:calc(100% + 10px);left:0;z-index:20;min-width:270px;background:var(--card);color:var(--ink);border-radius:16px;box-shadow:0 22px 50px -18px rgba(0,0,0,.6);padding:10px;display:grid;gap:2px}
+  .reserve-menu p{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:8px 12px 4px;margin:0;max-width:none}
+  .reserve-menu a{display:flex;flex-direction:column;padding:10px 12px;border-radius:10px}
+  .reserve-menu a:hover,.reserve-menu a:focus-visible{background:var(--cream)}
+  .reserve-menu b{font-family:"Archivo";font-weight:800;font-size:1.02rem}
+  .reserve-menu span{font-size:.86rem;color:var(--red);font-weight:600}
+  .reserve-menu{text-align:left}
+  /* phones: center the chooser on the screen (under the button row) rather than under the button */
+  @media (max-width:720px){.hero-cta{position:relative}.reserve-drop{position:static}.reserve-menu{top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:min(270px,calc(100vw - 32px))}}
   .hero-meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:30px;font-size:.9rem;color:rgba(251,246,236,.7)}
   .hero-meta b{color:var(--cream)}
   .hero-meta .dot{color:var(--red);font-weight:800}
@@ -399,6 +413,13 @@
     .mobile-menu .btn{width:100%;margin-top:20px;text-align:center}
     .mm-loc{margin-top:24px}
     .mm-sub{border-bottom:1px solid var(--line);padding:4px 0 10px 16px}
+    .mm-reserve summary{list-style:none;cursor:pointer;padding:14px 0;font-family:"Archivo";font-weight:700;font-size:1.4rem;border-bottom:1px solid var(--line);color:var(--red)}
+    .mm-reserve summary::-webkit-details-marker{display:none}
+    .mm-reserve summary::after{content:"+";float:right;font-weight:400}
+    .mm-reserve[open] summary::after{content:"\2212"}
+    .mm-reserve[open] summary{border-bottom:0}
+    .mobile-menu .mm-reserve .mm-sub a{display:flex;flex-direction:column}
+    .mm-reserve .mm-sub span{font-size:.85rem;color:var(--red);font-weight:600}
     .mobile-menu .mm-sub a{font-family:"Libre Franklin";font-weight:600;font-size:1.05rem;padding:8px 0;border-bottom:0;color:var(--ink-2)}
     .mm-loc label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
     .mm-loc select{width:100%;font-family:"Libre Franklin";font-weight:700;font-size:1rem;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:.7em .9em}
@@ -463,6 +484,14 @@
     <button class="mm-close" id="mmClose" aria-label="Close menu">&times;</button>
   </div>
   <a href="/#menu">Menu</a>
+  <details class="mm-reserve">
+    <summary>Reserve a Table</summary>
+    <div class="mm-sub">
+      <a href="__RESERVE_SPEONK__" target="_blank" rel="noopener"><b>Speonk</b><span>Book on OpenTable</span></a>
+      <a href="__RESERVE_ISLIP__" target="_blank" rel="noopener"><b>Islip Terrace</b><span>Book on OpenTable</span></a>
+      <a href="tel:+15165865917"><b>Farmingdale</b><span>Call (516) 586-5917</span></a>
+    </div>
+  </details>
   <a href="/promotions/">Promotions</a>
   <a href="/gallery/">Gallery</a>
   <a href="/#locations">Locations &amp; Hours</a>
@@ -494,7 +523,15 @@
       <h1>There's just something about Mary's.</h1>
       <p class="lead">Real pizza. Real pasta. Real Long Island. Made fresh every day in Speonk, Islip Terrace and Farmingdale.</p>
       <div class="hero-cta">
-        <a class="btn btn-red" href="/#menu">See the Menu</a>
+        <details class="reserve-drop">
+          <summary class="btn btn-red">Reserve a Table</summary>
+          <div class="reserve-menu">
+          <p>Which location?</p>
+          <a href="__RESERVE_SPEONK__" target="_blank" rel="noopener"><b>Speonk</b><span>Book on OpenTable</span></a>
+          <a href="__RESERVE_ISLIP__" target="_blank" rel="noopener"><b>Islip Terrace</b><span>Book on OpenTable</span></a>
+          <a href="tel:+15165865917"><b>Farmingdale</b><span>Call (516) 586-5917</span></a>
+          </div>
+        </details>
         <a class="btn btn-outline-cream order-link" href="__ORDER_URL__" target="_blank" rel="noopener">Order Now</a>
       </div>
       <p class="hero-loc-note">Ordering from <b class="loc-name">Speonk</b> · <a href="/#locations">change location</a></p>
@@ -696,6 +733,7 @@
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
         <div class="loc-card-btns">
+          <a class="btn btn-red" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Reserve on OpenTable</a>
           <button class="btn btn-set-loc" data-loc="speonk" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+190+Montauk+Highway+Speonk+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
@@ -713,6 +751,7 @@
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
         <div class="loc-card-btns">
+          <a class="btn btn-red" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Reserve on OpenTable</a>
           <button class="btn btn-set-loc" data-loc="islip" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+876+Connetquot+Ave+Islip+Terrace+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
@@ -730,6 +769,7 @@
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
         <div class="loc-card-btns">
+          <a class="btn btn-red" href="tel:+15165865917">Call to Reserve</a>
           <button class="btn btn-set-loc" data-loc="farmingdale" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+611+Main+St+Farmingdale+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
@@ -880,6 +920,14 @@
       location.href = LOCATIONS[id].takeoutMenuUrl;
     }
   }
+
+  // Reserve a Table chooser (<details>): close on outside click or Escape
+  document.addEventListener('click', (e) => {
+    document.querySelectorAll('.reserve-drop[open]').forEach(d => { if(!d.contains(e.target)) d.open = false; });
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') document.querySelectorAll('.reserve-drop[open]').forEach(d => { d.open = false; d.querySelector('summary').focus(); });
+  });
 
   function initLocationSwitcher(){
     let startId = getSavedLocation() || DEFAULT_LOC;
