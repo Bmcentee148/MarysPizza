@@ -372,10 +372,7 @@
   .loc-card .btn{margin-top:auto;width:100%;margin-top:22px}
   .loc-card-btns{margin-top:22px;display:grid;gap:10px}
   .loc-card-btns .btn{margin-top:0}
-  .btn-set-loc{background:transparent;border:1.5px solid rgba(255,154,166,.5);color:#ff9aa6}
-  .btn-set-loc:hover{background:rgba(255,154,166,.12)}
   .loc-card.active{border-color:var(--red);background:rgba(208,8,30,.10);box-shadow:0 0 0 1px var(--red) inset}
-  .loc-card.active .btn-set-loc{background:var(--red);border-color:var(--red);color:#fff}
   .loc-card.active::before{content:"Your location";display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);padding:.3em .8em;border-radius:999px;margin-bottom:14px}
 
   /* reveal */
@@ -734,7 +731,6 @@
         </div>
         <div class="loc-card-btns">
           <a class="btn btn-red" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Reserve on OpenTable</a>
-          <button class="btn btn-set-loc" data-loc="speonk" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+190+Montauk+Highway+Speonk+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
@@ -752,7 +748,6 @@
         </div>
         <div class="loc-card-btns">
           <a class="btn btn-red" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Reserve on OpenTable</a>
-          <button class="btn btn-set-loc" data-loc="islip" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+876+Connetquot+Ave+Islip+Terrace+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
@@ -770,7 +765,6 @@
         </div>
         <div class="loc-card-btns">
           <a class="btn btn-red" href="tel:+15165865917">Call to Reserve</a>
-          <button class="btn btn-set-loc" data-loc="farmingdale" type="button">This is my location</button>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+611+Main+St+Farmingdale+NY" target="_blank" rel="noopener">Get Directions</a>
         </div>
       </div>
@@ -948,12 +942,6 @@
 
     document.querySelectorAll('.loc-pill').forEach(btn => {
       btn.addEventListener('click', () => applyLocation(btn.dataset.loc));
-    });
-    document.querySelectorAll('.btn-set-loc').forEach(btn => {
-      btn.addEventListener('click', () => {
-        applyLocation(btn.dataset.loc);
-        scrollToId('menu');
-      });
     });
   }
   initLocationSwitcher();
