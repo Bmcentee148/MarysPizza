@@ -4,6 +4,10 @@
   .lp-hero h1{font-weight:900;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.02;margin:14px 0 0}
   .lp-lead{color:var(--ink-2);margin-top:16px;font-size:1.1rem;max-width:48ch}
   .lp-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+  [data-rz].is-closed .btn.rz-if-closed{display:inline-flex}
+  .lp-rz{flex-basis:100%;margin:2px 0 0;font-size:.92rem;color:var(--ink-3)}
+  .lp-rz a{color:var(--red);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+  [data-rz].is-closed .lp-rz.rz-if-closed{display:block}
   .lp-hero-photo img{width:100%;height:auto;border-radius:20px;box-shadow:var(--shadow)}
 
   .lp-info{padding:0 0 20px}
