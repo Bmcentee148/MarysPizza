@@ -1009,8 +1009,13 @@
   const encode = (data) => Object.keys(data).map(k => encodeURIComponent(k)+'='+encodeURIComponent(data[k])).join('&');
   if(form){
     // /contact/?type=catering or ?type=event opens the form with that inquiry type chosen
-    const want = {catering:'Catering quote', event:'Private event'}[new URLSearchParams(location.search).get('type')];
+    const want = {catering:'Catering quote', event:'Private event', review:'Review'}[new URLSearchParams(location.search).get('type')];
     if(want) document.getElementById('type').value = want;
+    // Details prompt follows the inquiry type (Review = private feedback about a visit)
+    const typeSel = document.getElementById('type'), msg = document.getElementById('msg');
+    const defaultPrompt = msg.placeholder;
+    const syncPrompt = () => { msg.placeholder = typeSel.value === 'Review' ? 'Which location, when you visited, and what happened.' : defaultPrompt; };
+    typeSel.addEventListener('change', syncPrompt); syncPrompt();
   }
   if(form) form.addEventListener('submit', (e) => {
     e.preventDefault();
