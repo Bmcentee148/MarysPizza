@@ -146,10 +146,17 @@
   .reserve-drop summary::-webkit-details-marker{display:none}
   .reserve-menu{position:absolute;top:calc(100% + 10px);left:0;z-index:20;min-width:270px;background:var(--card);color:var(--ink);border-radius:16px;box-shadow:0 22px 50px -18px rgba(0,0,0,.6);padding:10px;display:grid;gap:2px}
   .reserve-menu p{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);padding:8px 12px 4px;margin:0;max-width:none}
-  .reserve-menu a{display:flex;flex-direction:column;padding:10px 12px;border-radius:10px}
-  .reserve-menu a:hover,.reserve-menu a:focus-visible{background:var(--cream)}
-  .reserve-menu b{font-family:"Archivo";font-weight:800;font-size:1.02rem}
-  .reserve-menu span{font-size:.86rem;color:var(--red);font-weight:600}
+  /* reservation rows: calling comes first; when a store is closed (shared JS adds .is-closed), booking online leads */
+  [data-rz] .rz-if-closed{display:none}
+  [data-rz].is-closed .rz-if-open{display:none}
+  [data-rz].is-closed .rz-if-closed{display:revert}
+  .rz-row{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:10px 12px;border-radius:10px}
+  .rz-row b{font-family:"Archivo";font-weight:800;font-size:1.02rem;color:var(--ink)}
+  .rz-row .rz-main{font-weight:700;color:var(--red);font-size:1rem}
+  .rz-row .rz-sub{font-size:.84rem;color:var(--ink-3)}
+  .rz-row a.rz-sub,.rz-row .rz-sub a{text-decoration:underline;text-underline-offset:2px;color:var(--ink-2)}
+  .rz-row .rz-main:hover,.rz-row a:hover{color:var(--red-deep)}
+  [data-rz].is-closed.rz-row .rz-if-closed{display:block}
   .reserve-menu{text-align:left}
   /* phones: center the chooser on the screen (under the button row) rather than under the button */
   @media (max-width:720px){.hero-cta{position:relative}.reserve-drop{position:static}.reserve-menu{top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:min(270px,calc(100vw - 32px))}}
@@ -372,6 +379,9 @@
   .loc-card .btn{margin-top:auto;width:100%;margin-top:22px}
   .loc-card-btns{margin-top:22px;display:grid;gap:10px}
   .loc-card-btns .btn{margin-top:0}
+  [data-rz].is-closed.loc-card-btns .btn.rz-if-closed{display:inline-flex}
+  .rz-alt{font-size:.88rem;color:rgba(251,246,236,.7);text-align:center;margin:2px 0 0}
+  .rz-alt a{color:#ff9aa6;font-weight:600;text-decoration:underline;text-underline-offset:2px}
   .loc-card.active{border-color:var(--red);background:rgba(208,8,30,.10);box-shadow:0 0 0 1px var(--red) inset}
   .loc-card.active::before{content:"Your location";display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--red);padding:.3em .8em;border-radius:999px;margin-bottom:14px}
 
@@ -415,8 +425,10 @@
     .mm-reserve summary::after{content:"+";float:right;font-weight:400}
     .mm-reserve[open] summary::after{content:"\2212"}
     .mm-reserve[open] summary{border-bottom:0}
-    .mobile-menu .mm-reserve .mm-sub a{display:flex;flex-direction:column}
-    .mm-reserve .mm-sub span{font-size:.85rem;color:var(--red);font-weight:600}
+    .mm-reserve .rz-row{padding:8px 0}
+    .mobile-menu .mm-reserve .mm-sub a{padding:2px 0;font-family:"Libre Franklin";border-bottom:0}
+    .mobile-menu .mm-reserve .rz-main{font-size:1.05rem;color:var(--red)}
+    .mobile-menu .mm-reserve .rz-sub,.mobile-menu .mm-reserve a.rz-sub{font-size:.9rem;font-weight:500;color:var(--ink-3)}
     .mobile-menu .mm-sub a{font-family:"Libre Franklin";font-weight:600;font-size:1.05rem;padding:8px 0;border-bottom:0;color:var(--ink-2)}
     .mm-loc label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
     .mm-loc select{width:100%;font-family:"Libre Franklin";font-weight:700;font-size:1rem;color:var(--ink);background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:.7em .9em}
@@ -484,9 +496,26 @@
   <details class="mm-reserve">
     <summary>Reserve a Table</summary>
     <div class="mm-sub">
-      <a href="__RESERVE_SPEONK__" target="_blank" rel="noopener"><b>Speonk</b><span>Book on OpenTable</span></a>
-      <a href="__RESERVE_ISLIP__" target="_blank" rel="noopener"><b>Islip Terrace</b><span>Book on OpenTable</span></a>
-      <a href="tel:+15165865917"><b>Farmingdale</b><span>Call (516) 586-5917</span></a>
+      <div class="rz-row" data-rz="speonk">
+        <b>Speonk</b>
+        <a class="rz-main rz-if-open" href="tel:+16318016600">Call (631) 801-6600</a>
+        <a class="rz-sub rz-if-open" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">or book online</a>
+        <a class="rz-main rz-if-closed" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Book online</a>
+        <span class="rz-sub rz-if-closed">Closed now · or call <a href="tel:+16318016600">(631) 801-6600</a> when we open</span>
+      </div>
+      <div class="rz-row" data-rz="islip">
+        <b>Islip Terrace</b>
+        <a class="rz-main rz-if-open" href="tel:+16312771590">Call (631) 277-1590</a>
+        <a class="rz-sub rz-if-open" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">or book online</a>
+        <a class="rz-main rz-if-closed" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Book online</a>
+        <span class="rz-sub rz-if-closed">Closed now · or call <a href="tel:+16312771590">(631) 277-1590</a> when we open</span>
+      </div>
+      <div class="rz-row" data-rz="farmingdale">
+        <b>Farmingdale</b>
+        <a class="rz-main rz-if-open" href="tel:+15165865917">Call (516) 586-5917</a>
+        <a class="rz-main rz-if-closed" href="tel:+15165865917">Call (516) 586-5917</a>
+        <span class="rz-sub rz-if-closed">Closed now · call during business hours</span>
+      </div>
     </div>
   </details>
   <a href="/promotions/">Promotions</a>
@@ -524,9 +553,26 @@
           <summary class="btn btn-red">Reserve a Table</summary>
           <div class="reserve-menu">
           <p>Which location?</p>
-          <a href="__RESERVE_SPEONK__" target="_blank" rel="noopener"><b>Speonk</b><span>Book on OpenTable</span></a>
-          <a href="__RESERVE_ISLIP__" target="_blank" rel="noopener"><b>Islip Terrace</b><span>Book on OpenTable</span></a>
-          <a href="tel:+15165865917"><b>Farmingdale</b><span>Call (516) 586-5917</span></a>
+          <div class="rz-row" data-rz="speonk">
+            <b>Speonk</b>
+            <a class="rz-main rz-if-open" href="tel:+16318016600">Call (631) 801-6600</a>
+            <a class="rz-sub rz-if-open" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">or book online</a>
+            <a class="rz-main rz-if-closed" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Book online</a>
+            <span class="rz-sub rz-if-closed">Closed now · or call <a href="tel:+16318016600">(631) 801-6600</a> when we open</span>
+          </div>
+          <div class="rz-row" data-rz="islip">
+            <b>Islip Terrace</b>
+            <a class="rz-main rz-if-open" href="tel:+16312771590">Call (631) 277-1590</a>
+            <a class="rz-sub rz-if-open" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">or book online</a>
+            <a class="rz-main rz-if-closed" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Book online</a>
+            <span class="rz-sub rz-if-closed">Closed now · or call <a href="tel:+16312771590">(631) 277-1590</a> when we open</span>
+          </div>
+          <div class="rz-row" data-rz="farmingdale">
+            <b>Farmingdale</b>
+            <a class="rz-main rz-if-open" href="tel:+15165865917">Call (516) 586-5917</a>
+            <a class="rz-main rz-if-closed" href="tel:+15165865917">Call (516) 586-5917</a>
+            <span class="rz-sub rz-if-closed">Closed now · call during business hours</span>
+          </div>
           </div>
         </details>
         <a class="btn btn-outline-cream order-link" href="__ORDER_URL__" target="_blank" rel="noopener">Order Now</a>
@@ -729,9 +775,12 @@
           <div><span>Fri–Sat</span><b>11am – 11pm</b></div>
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
-        <div class="loc-card-btns">
-          <a class="btn btn-red" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Reserve on OpenTable</a>
+        <div class="loc-card-btns" data-rz="speonk">
+          <a class="btn btn-red rz-if-open" href="tel:+16318016600">Call to Reserve</a>
+          <a class="btn btn-red rz-if-closed" href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Reserve Online</a>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+190+Montauk+Highway+Speonk+NY" target="_blank" rel="noopener">Get Directions</a>
+          <p class="rz-alt rz-if-open">Prefer to book online? <a href="__RESERVE_SPEONK__" target="_blank" rel="noopener">Reserve on OpenTable</a></p>
+          <p class="rz-alt rz-if-closed">Closed right now. Or call <a href="tel:+16318016600">(631) 801-6600</a> when we open.</p>
         </div>
       </div>
 
@@ -746,9 +795,12 @@
           <div><span>Fri–Sat</span><b>11am – 11pm</b></div>
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
-        <div class="loc-card-btns">
-          <a class="btn btn-red" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Reserve on OpenTable</a>
+        <div class="loc-card-btns" data-rz="islip">
+          <a class="btn btn-red rz-if-open" href="tel:+16312771590">Call to Reserve</a>
+          <a class="btn btn-red rz-if-closed" href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Reserve Online</a>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+876+Connetquot+Ave+Islip+Terrace+NY" target="_blank" rel="noopener">Get Directions</a>
+          <p class="rz-alt rz-if-open">Prefer to book online? <a href="__RESERVE_ISLIP__" target="_blank" rel="noopener">Reserve on OpenTable</a></p>
+          <p class="rz-alt rz-if-closed">Closed right now. Or call <a href="tel:+16312771590">(631) 277-1590</a> when we open.</p>
         </div>
       </div>
 
@@ -763,9 +815,11 @@
           <div><span>Fri–Sat</span><b>11am – 11pm</b></div>
           <div><span>Sunday</span><b>12pm – 9pm</b></div>
         </div>
-        <div class="loc-card-btns">
-          <a class="btn btn-red" href="tel:+15165865917">Call to Reserve</a>
+        <div class="loc-card-btns" data-rz="farmingdale">
+          <a class="btn btn-red rz-if-open" href="tel:+15165865917">Call to Reserve</a>
+          <a class="btn btn-red rz-if-closed" href="tel:+15165865917">Call to Reserve</a>
           <a class="btn btn-outline-cream" href="https://maps.google.com/?q=Mary's+Pizza+and+Pasta+611+Main+St+Farmingdale+NY" target="_blank" rel="noopener">Get Directions</a>
+          <p class="rz-alt rz-if-closed">Closed right now. Call during business hours.</p>
         </div>
       </div>
     </div>
@@ -914,6 +968,29 @@
       location.href = LOCATIONS[id].takeoutMenuUrl;
     }
   }
+
+  // Reservations: calling is the main option, but when a store is closed
+  // (by Long Island time, whatever the visitor's time zone) booking online
+  // leads instead. Hours per day, Sunday first, in minutes after midnight.
+  const STORE_HOURS = {
+    speonk:      [[720,1260],[660,1260],[660,1260],[660,1260],[660,1260],[660,1380],[660,1380]],
+    islip:       [[720,1260],[660,1260],[660,1260],[660,1260],[660,1260],[660,1380],[660,1380]],
+    farmingdale: [[720,1260],[660,1260],[660,1260],[660,1260],[660,1260],[660,1380],[660,1380]]
+  };
+  function storeIsOpen(id, now){
+    const parts = {};
+    new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York', weekday:'short', hour:'numeric', minute:'numeric', hourCycle:'h23'})
+      .formatToParts(now || new Date()).forEach(p => { parts[p.type] = p.value; });
+    const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(parts.weekday);
+    const mins = (+parts.hour % 24) * 60 + (+parts.minute);
+    const h = STORE_HOURS[id] && STORE_HOURS[id][day];
+    return !h || (mins >= h[0] && mins < h[1]);
+  }
+  function syncReserveOptions(){
+    document.querySelectorAll('[data-rz]').forEach(el => el.classList.toggle('is-closed', !storeIsOpen(el.dataset.rz)));
+  }
+  syncReserveOptions();
+  setInterval(syncReserveOptions, 60000);
 
   // Reserve a Table chooser (<details>): close on outside click or Escape
   document.addEventListener('click', (e) => {
