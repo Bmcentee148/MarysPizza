@@ -34,6 +34,8 @@
   .col-heads{display:flex;justify-content:flex-end;gap:12px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
   .col-heads span{width:26px;text-align:right;display:inline-block}
   .col-heads.wide span{width:30px}
+  /* catering prices run to 3 digits in both columns */
+  .menu-cols.cater .item .pr2 b,.menu-cols.cater .col-heads span{width:32px}
 
   .note-block{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 22px;font-size:.9rem;color:var(--ink-2);margin:8px 0 34px}
   .note-block b{color:var(--ink)}
