@@ -19,6 +19,8 @@
   .promo-fine{font-size:.88rem;color:var(--ink-3);margin-top:6px}
   .promo-info .btn-row{margin-top:22px}
   .pkg-table{margin-top:16px;border-top:2px solid var(--ink)}
+  .pkg-table + .pkg-table{margin-top:18px}
+  .promo-fine b{color:var(--ink-2)}
   .pkg-row{display:grid;grid-template-columns:auto 1fr auto;gap:6px 16px;align-items:baseline;padding:11px 0;border-bottom:1px dashed var(--line)}
   .pkg-row b{font-family:"Archivo";font-weight:800;white-space:nowrap}
   .pkg-row span{color:var(--ink-2);font-size:.93rem}
