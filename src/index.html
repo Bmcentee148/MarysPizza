@@ -70,6 +70,17 @@
   .btn-outline-cream{border-color:rgba(251,246,236,.55);color:var(--cream)}
   .btn-outline-cream:hover{background:var(--cream);color:var(--ink);transform:translateY(-2px)}
 
+  /* ---------- ANNOUNCEMENT BAR ---------- */
+  .announce{position:relative;background:var(--red);color:#fff;text-align:center;padding:9px 48px;font-size:.92rem;line-height:1.4}
+  .announce[hidden]{display:none}
+  .announce p{margin:0}
+  .announce b{font-weight:800}
+  .announce a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:2px;margin-left:4px;white-space:nowrap}
+  .announce-short{display:none}
+  .announce-close{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:1.4rem;line-height:1;cursor:pointer;padding:4px 8px;opacity:.85}
+  .announce-close:hover{opacity:1}
+  @media (max-width:720px){.announce{font-size:.86rem;padding:8px 40px}.announce-long{display:none}.announce-short{display:inline}}
+
   /* ---------- NAV ---------- */
   header.nav{
     position:sticky;top:0;z-index:60;
@@ -449,6 +460,14 @@
 </style>
 </head>
 <body>
+
+<!-- ANNOUNCEMENT BAR: one short promo above the nav on every page. Shown by the shared JS only
+     between data-bar-starts and data-bar-ends (last day, Long Island time), and hidden for good once
+     the visitor closes it. Without JavaScript it stays hidden. -->
+<div class="announce" id="announce" data-bar-id="bf-giftcards-2026" data-bar-ends="2026-11-27" hidden>
+  <p><b>Black Friday only:</b> <span class="announce-long">$10 off $50 gift cards, $25 off $100 gift cards. In-store, Fri Nov 27.</span><span class="announce-short">Save up to $25 on gift cards, Fri 11/27.</span> <a href="/promotions/">Details</a></p>
+  <button type="button" class="announce-close" aria-label="Dismiss announcement">&times;</button>
+</div>
 
 <!-- NAV -->
 <header class="nav" id="nav">
@@ -991,6 +1010,22 @@
   }
   syncReserveOptions();
   setInterval(syncReserveOptions, 60000);
+
+  // Announcement bar: show only through its last day (Long Island time) and until dismissed
+  (function(){
+    const bar = document.getElementById('announce');
+    if(!bar) return;
+    const key = 'marysBarClosed:' + bar.dataset.barId;
+    let closed = false;
+    try { closed = localStorage.getItem(key) === '1'; } catch(e){}
+    const today = new Intl.DateTimeFormat('en-CA', {timeZone:'America/New_York'}).format(new Date()); // YYYY-MM-DD
+    const started = !bar.dataset.barStarts || today >= bar.dataset.barStarts;
+    if(!closed && started && today <= bar.dataset.barEnds) bar.hidden = false;
+    bar.querySelector('.announce-close').addEventListener('click', () => {
+      bar.hidden = true;
+      try { localStorage.setItem(key, '1'); } catch(e){}
+    });
+  })();
 
   // Reserve a Table chooser (<details>): close on outside click or Escape
   document.addEventListener('click', (e) => {
