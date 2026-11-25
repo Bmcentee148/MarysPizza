@@ -10,9 +10,10 @@
   <div class="wrap">
     <div class="p-list" id="promoList">
 
-      <!-- Each promo is an <article class="promo-card"> with a data-ends date (its last day). It is hidden
+      <!-- Each promo is an <article class="promo-card"> with an id (so other pages can link straight to it,
+           e.g. /promotions/#football-specials) and a data-ends date (its last day). It is hidden
            automatically after that date, and the build prints a NOTE until it's removed. -->
-      <article class="promo-card" data-ends="2027-02-14">
+      <article class="promo-card" id="football-specials" data-ends="2027-02-14">
         <a class="promo-flyer" href="/assets/promotions/football-specials-2026.webp" target="_blank" rel="noopener">
           <img src="/assets/promotions/football-specials-2026.webp" alt="Mary's take-out Football Specials flyer: Coin Toss, Kickoff, Halftime and Touchdown packages from $30 to $70, plus wings on the bone or boneless" width="1082" height="1400" loading="lazy" decoding="async" />
         </a>
@@ -39,7 +40,7 @@
         </div>
       </article>
 
-      <article class="promo-card" data-ends="2026-11-27">
+      <article class="promo-card" id="gift-card-sale" data-ends="2026-11-27">
         <a class="promo-flyer" href="/assets/promotions/black-friday-gift-card-sale-2026.webp" target="_blank" rel="noopener">
           <img src="/assets/promotions/black-friday-gift-card-sale-2026.webp" alt="Black Friday gift card sale flyer: $10 off a $50 gift card, $25 off a $100 gift card, November 27, 2026 only" width="1082" height="1400" loading="lazy" decoding="async" />
         </a>
@@ -59,7 +60,7 @@
         </div>
       </article>
 
-      <article class="promo-card" data-ends="2027-01-01">
+      <article class="promo-card" id="holiday-packages" data-ends="2027-01-01">
         <a class="promo-flyer" href="/assets/promotions/holiday-packages-2026.webp" target="_blank" rel="noopener">
           <img src="/assets/promotions/holiday-packages-2026.webp" alt="Holiday Packages flyer: five catering packages from $180 to $500, feeding 8 to 25 people" width="1082" height="1400" loading="lazy" decoding="async" />
         </a>

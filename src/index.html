@@ -461,11 +461,15 @@
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR: one short promo above the nav on every page. Shown by the shared JS only
-     between data-bar-starts and data-bar-ends (last day, Long Island time), and hidden for good once
-     the visitor closes it. Without JavaScript it stays hidden. -->
-<div class="announce" id="announce" data-bar-id="bf-giftcards-2026" data-bar-ends="2026-11-27" hidden>
-  <p><b>Black Friday only:</b> <span class="announce-long">$10 off $50 gift cards, $25 off $100 gift cards. In-store, Fri Nov 27.</span><span class="announce-short">Save up to $25 on gift cards, Fri 11/27.</span> <a href="/promotions/">Details</a></p>
+<!-- ANNOUNCEMENT BARS: short promos above the nav on every page. The shared JS shows the FIRST bar
+     whose dates include today (data-bar-starts / data-bar-ends, inclusive, Long Island time) and that
+     the visitor hasn't closed. Without JavaScript they all stay hidden. -->
+<div class="announce" data-bar-id="bf-giftcards-2026" data-bar-ends="2026-11-27" hidden>
+  <p><b>Black Friday only:</b> <span class="announce-long">$10 off $50 gift cards, $25 off $100 gift cards. In-store, Fri Nov 27.</span><span class="announce-short">Save up to $25 on gift cards, Fri 11/27.</span> <a href="/promotions/#gift-card-sale">Details</a></p>
+  <button type="button" class="announce-close" aria-label="Dismiss announcement">&times;</button>
+</div>
+<div class="announce" data-bar-id="football-2026" data-bar-starts="2026-11-28" data-bar-ends="2027-02-14" hidden>
+  <p><b>Football Specials:</b> <span class="announce-long">Game-day take-out packages from $30, plus wings by the 10, 25 or 50.</span><span class="announce-short">Game-day packages from $30.</span> <a href="/promotions/#football-specials">Details</a></p>
   <button type="button" class="announce-close" aria-label="Dismiss announcement">&times;</button>
 </div>
 
@@ -1011,19 +1015,17 @@
   syncReserveOptions();
   setInterval(syncReserveOptions, 60000);
 
-  // Announcement bar: show only through its last day (Long Island time) and until dismissed
+  // Announcement bars: show the first one that's running today (Long Island time) and not dismissed
   (function(){
-    const bar = document.getElementById('announce');
-    if(!bar) return;
-    const key = 'marysBarClosed:' + bar.dataset.barId;
-    let closed = false;
-    try { closed = localStorage.getItem(key) === '1'; } catch(e){}
     const today = new Intl.DateTimeFormat('en-CA', {timeZone:'America/New_York'}).format(new Date()); // YYYY-MM-DD
-    const started = !bar.dataset.barStarts || today >= bar.dataset.barStarts;
-    if(!closed && started && today <= bar.dataset.barEnds) bar.hidden = false;
+    const isClosed = id => { try { return localStorage.getItem('marysBarClosed:' + id) === '1'; } catch(e){ return false; } };
+    const bar = [...document.querySelectorAll('.announce')].find(b =>
+      (!b.dataset.barStarts || today >= b.dataset.barStarts) && today <= b.dataset.barEnds && !isClosed(b.dataset.barId));
+    if(!bar) return;
+    bar.hidden = false;
     bar.querySelector('.announce-close').addEventListener('click', () => {
       bar.hidden = true;
-      try { localStorage.setItem(key, '1'); } catch(e){}
+      try { localStorage.setItem('marysBarClosed:' + bar.dataset.barId, '1'); } catch(e){}
     });
   })();
 
