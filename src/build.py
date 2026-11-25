@@ -224,14 +224,19 @@ def check_promo_dates(pages, errors, notes):
             if ends < today:
                 notes.append(f"{url_for(name)}: a promotion ended on {value} and is hidden; remove it from src/pages/{name}.main.html")
     # the announcement bar lives in the shared template (index.html), so check it once
+    for value in re.findall(r'data-bar-(?:starts|ends)="([^"]*)"', pages["index"]):
+        try:
+            ends = date.fromisoformat(value)
+        except ValueError:
+            errors.append(f'announcement bar: date "{value}" must be like 2026-12-31')
+            continue
     for value in re.findall(r'data-bar-ends="([^"]*)"', pages["index"]):
         try:
             ends = date.fromisoformat(value)
         except ValueError:
-            errors.append(f'announcement bar: data-bar-ends="{value}" must be a date like 2026-12-31')
             continue
         if ends < today:
-            notes.append(f"announcement bar ended on {value} and is hidden; update or remove it in src/index.html")
+            notes.append(f"an announcement bar ended on {value} and is hidden; remove it from src/index.html")
 
 
 def write_sitemap(site_url, names):
