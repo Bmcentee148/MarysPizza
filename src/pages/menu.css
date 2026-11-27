@@ -1,4 +1,4 @@
-/* Styles shared by the menu pages (location menus + catering).
+/* Styles shared by the menu pages (takeout, dine-in + catering).
    Inlined into those pages only, after the site-wide styles in index.html. */
   /* menu hero */
   .menu-hero{padding:52px 0 40px;border-bottom:1px solid var(--line-2)}
@@ -11,6 +11,8 @@
   .loc-chip h3{font-size:1.1rem;font-weight:800}
   .loc-chip p{color:var(--ink-2);font-size:.9rem;margin-top:2px}
   .loc-chip a.tel{color:var(--red);font-weight:700;font-size:.95rem;white-space:nowrap}
+  .menu-hero p.menu-switch{margin-top:18px;font-size:.98rem}
+  .menu-switch a{color:var(--red);font-weight:700;text-decoration:underline;text-underline-offset:3px}
   .promo{margin-top:22px;background:var(--ink);color:var(--cream);border-radius:14px;padding:18px 22px;display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
   /* margin/max-width reset: .menu-hero p would otherwise push the text below the button's centre */
   .promo p{font-size:.98rem;color:rgba(251,246,236,.85);margin-top:0;max-width:none}
