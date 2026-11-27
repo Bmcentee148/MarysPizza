@@ -1,3 +1,222 @@
 [build]
   command = "cd src && python3 build.py"
   publish = "dist"
+
+# Old WordPress URLs -> pages on this site (301). The full crawl and the reasoning
+# for each target are in redirect-plan.md. Netlify matches a path with or without
+# its trailing slash. Pages that were never real content (the theme demo /home-2/,
+# the "Hello world!" post and its archives, wp-login, feeds) have no rule on purpose:
+# they get the 404 page. build.py checks that every "to" is a page this site builds
+# (or a planned one) and that no "from" is a page that exists.
+
+# --- Location pages (old store homepages and About Us pages) ---
+[[redirects]]
+  from = "/home-speonk/"
+  to = "/speonk/"
+  status = 301
+[[redirects]]
+  from = "/about-us-speonk/"
+  to = "/speonk/"
+  status = 301
+[[redirects]]
+  from = "/home-islip/"
+  to = "/islip-terrace/"
+  status = 301
+[[redirects]]
+  from = "/home-islip-2024/"
+  to = "/islip-terrace/"
+  status = 301
+[[redirects]]
+  from = "/about-us-islip/"
+  to = "/islip-terrace/"
+  status = 301
+[[redirects]]
+  from = "/home-farmingdale/"
+  to = "/farmingdale/"
+  status = 301
+[[redirects]]
+  from = "/home-farmingdale-2025/"
+  to = "/farmingdale/"
+  status = 301
+[[redirects]]
+  from = "/about-us-farmingdale/"
+  to = "/farmingdale/"
+  status = 301
+
+# --- Takeout menus ---
+[[redirects]]
+  from = "/menus-speonk/"
+  to = "/takeout-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/speonk-takeout-menu/"
+  to = "/takeout-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/speonk-takeoutmenu/"
+  to = "/takeout-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/menus/"
+  to = "/takeout-menu-farmingdale-islip/"
+  status = 301
+[[redirects]]
+  from = "/islip-farm-takeout-menu/"
+  to = "/takeout-menu-farmingdale-islip/"
+  status = 301
+[[redirects]]
+  from = "/take-out-menu/"
+  to = "/takeout-menu-farmingdale-islip/"
+  status = 301
+
+# --- Dine-in and drink menus ---
+[[redirects]]
+  from = "/speonk-dine-in-menu/"
+  to = "/dine-in-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/speonk-drink-menu/"
+  to = "/dine-in-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/farmingdale-dineinmenu/"
+  to = "/dine-in-menu-farmingdale/"
+  status = 301
+[[redirects]]
+  from = "/dine-in-menu/"
+  to = "/dine-in-menu-farmingdale/"
+  status = 301
+[[redirects]]
+  from = "/2021-dine-in-menu/"
+  to = "/dine-in-menu-farmingdale/"
+  status = 301
+[[redirects]]
+  from = "/islip-dine-in-menu/"
+  to = "/dine-in-menu-islip-terrace/"
+  status = 301
+
+# --- Catering menus ---
+[[redirects]]
+  from = "/catering-menu-new/"
+  to = "/catering-menu/"
+  status = 301
+[[redirects]]
+  from = "/catering-25/"
+  to = "/catering-menu/"
+  status = 301
+[[redirects]]
+  from = "/speonk-catering-menu/"
+  to = "/catering-menu/"
+  status = 301
+
+# --- Contact pages and employment (no jobs page: the form has an Employment type) ---
+[[redirects]]
+  from = "/contact-main/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-2/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-speonk-2/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-farmingdale/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-islip-old/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/contact-islip-terrace-2024/"
+  to = "/contact/"
+  status = 301
+[[redirects]]
+  from = "/employment-new/"
+  to = "/contact/?type=employment"
+  status = 301
+
+# --- Gallery plugin pages (/gallery/ itself has the same URL on both sites) ---
+[[redirects]]
+  from = "/bwg_gallery/marys-pizza/"
+  to = "/gallery/"
+  status = 301
+[[redirects]]
+  from = "/bwg_gallery/new-gallery/"
+  to = "/gallery/"
+  status = 301
+
+# --- Old homepage versions ---
+[[redirects]]
+  from = "/homepage/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/homepage2021/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/home2020/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/landing-old22/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/land/"
+  to = "/"
+  status = 301
+[[redirects]]
+  from = "/welcome-to-marys-pizza-and-pasta3/"
+  to = "/"
+  status = 301
+
+# --- Current PDFs linked from the old nav, social posts or QR codes ---
+[[redirects]]
+  from = "/wp-content/uploads/2026/04/2026SpeonkTakeOutMenuWeb.pdf"
+  to = "/takeout-menu-speonk/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/04/FINALFarmIslp-TakeOutMenu2026Web.pdf"
+  to = "/takeout-menu-farmingdale-islip/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/08/catering-menu-new-2026.pdf"
+  to = "/catering-menu/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/11/Holiday2026.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/11/BlackFriday2026.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/01/football-flyer26.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2024/09/CHICKEN-NIGHT-2.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2026/01/chicken-night26.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2024/09/Seafood-Night.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2022/07/DineinMenuPastaNite2022WEB.pdf"
+  to = "/promotions/"
+  status = 301
+[[redirects]]
+  from = "/wp-content/uploads/2024/09/happy-hour-3.pdf"
+  to = "/promotions/"
+  status = 301
