@@ -122,7 +122,7 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
   <section style="display:flex;flex-direction:column;gap:14px">
     <h2>Decisions needed</h2>
     <div class="decisions">
-      <div class="dec"><h3><span class="flag">D1</span>Dine-in menus</h3><p>The rebuild has takeout menus only. Dine-in URLs go to that location's takeout menu unless dine-in menus get added.</p></div>
+      <div class="dec"><h3><span class="flag">D1</span>Dine-in menus · decided</h3><p>One full menu per location, labeled Dine-In &amp; Takeout. Old dine-in URLs redirect to it. Still to confirm: prices are the same for both.</p></div>
       <div class="dec"><h3><span class="flag">D2</span>Speonk drink menu</h3><p>Goes to the Speonk page for now. Could get its own drink menu, since the bar is a draw there.</p></div>
       <div class="dec"><h3><span class="flag">D3</span>Employment</h3><p>No jobs page. Contact (with a job inquiry option), the homepage, or a small employment page.</p></div>
       <div class="dec"><h3><span class="flag">D4</span>Weekly specials</h3><p>Pasta, Chicken and Seafood Night and Happy Hour. If still running, add them to Promotions and redirect the PDFs there.</p></div>
@@ -139,8 +139,8 @@ const rows=[
   {to:'/speonk/', name:'Speonk location', src:[['/home-speonk/',N],['/about-us-speonk/',N],['/speonk-drink-menu/',N,'D2']]},
   {to:'/islip-terrace/', name:'Islip Terrace location', planned:true, src:[['/home-islip/',N],['/about-us-islip/',N],['/home-islip-2024/',O]]},
   {to:'/farmingdale/', name:'Farmingdale location', planned:true, src:[['/home-farmingdale/',N],['/about-us-farmingdale/',N],['/home-farmingdale-2025/',O]]},
-  {to:'/takeout-menu-farmingdale-islip/', name:'Farmingdale & Islip takeout menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/farmingdale-dineinmenu/',N,'D1'],['/take-out-menu/',O],['/islip-dine-in-menu/',O,'D1'],['/dine-in-menu/',O,'D1'],['/2021-dine-in-menu/',O,'D1'],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
-  {to:'/takeout-menu-speonk/', name:'Speonk takeout menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N,'D1'],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
+  {to:'/menu-farmingdale-islip/', name:'Farmingdale & Islip menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/farmingdale-dineinmenu/',N,'D1'],['/take-out-menu/',O],['/islip-dine-in-menu/',O,'D1'],['/dine-in-menu/',O,'D1'],['/2021-dine-in-menu/',O,'D1'],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
+  {to:'/menu-speonk/', name:'Speonk menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N,'D1'],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
   {to:'/catering-menu/', name:'Catering menu', src:[['/catering-menu-new/',N],['/catering-25/',O],['/speonk-catering-menu/',O],['catering-menu-new-2026.pdf',P]]},
   {to:'/promotions/', name:'Promotions', src:[['Holiday2026.pdf',P],['BlackFriday2026.pdf',P],['football-flyer26.pdf',P]]},
   {to:'/contact/', name:'Contact', src:[['/contact-main/',N],['/employment-new/',N,'D3'],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},

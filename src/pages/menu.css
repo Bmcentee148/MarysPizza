@@ -1,4 +1,4 @@
-/* Styles shared by the menu pages (takeout + catering).
+/* Styles shared by the menu pages (location menus + catering).
    Inlined into those pages only, after the site-wide styles in index.html. */
   /* menu hero */
   .menu-hero{padding:52px 0 40px;border-bottom:1px solid var(--line-2)}

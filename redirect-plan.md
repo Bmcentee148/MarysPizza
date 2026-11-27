@@ -52,17 +52,17 @@ Order Now                     HungerRush (external, unchanged)
 
 | Old URL | New URL | Notes |
 |---|---|---|
-| `/menus/` | `/takeout-menu-farmingdale-islip/` | in nav; Farmingdale/Islip hub |
-| `/menus-speonk/` | `/takeout-menu-speonk/` | in nav; Speonk hub |
-| `/islip-farm-takeout-menu/` | `/takeout-menu-farmingdale-islip/` | in nav |
-| `/take-out-menu/` | `/takeout-menu-farmingdale-islip/` | orphan, 2022 |
-| `/speonk-takeout-menu/` | `/takeout-menu-speonk/` | in nav |
-| `/speonk-takeoutmenu/` | `/takeout-menu-speonk/` | orphan, 2021 |
-| `/farmingdale-dineinmenu/` | `/takeout-menu-farmingdale-islip/` | in nav; **no dine-in menu on the rebuild** (decision 1) |
-| `/islip-dine-in-menu/` | `/takeout-menu-farmingdale-islip/` | orphan; same |
-| `/dine-in-menu/` | `/takeout-menu-farmingdale-islip/` | orphan, 2022 |
-| `/2021-dine-in-menu/` | `/takeout-menu-farmingdale-islip/` | orphan, 2021 |
-| `/speonk-dine-in-menu/` | `/takeout-menu-speonk/` | in nav; same |
+| `/menus/` | `/menu-farmingdale-islip/` | in nav; Farmingdale/Islip hub |
+| `/menus-speonk/` | `/menu-speonk/` | in nav; Speonk hub |
+| `/islip-farm-takeout-menu/` | `/menu-farmingdale-islip/` | in nav |
+| `/take-out-menu/` | `/menu-farmingdale-islip/` | orphan, 2022 |
+| `/speonk-takeout-menu/` | `/menu-speonk/` | in nav |
+| `/speonk-takeoutmenu/` | `/menu-speonk/` | orphan, 2021 |
+| `/farmingdale-dineinmenu/` | `/menu-farmingdale-islip/` | in nav; dine-in is covered by the combined menu |
+| `/islip-dine-in-menu/` | `/menu-farmingdale-islip/` | orphan; dine-in |
+| `/dine-in-menu/` | `/menu-farmingdale-islip/` | orphan, 2022 |
+| `/2021-dine-in-menu/` | `/menu-farmingdale-islip/` | orphan, 2021 |
+| `/speonk-dine-in-menu/` | `/menu-speonk/` | in nav; dine-in |
 | `/speonk-drink-menu/` | `/speonk/` | in nav; **no drink menu on the rebuild** (decision 2) |
 | `/catering-menu-new/` | `/catering-menu/` | in nav |
 | `/catering-25/` | `/catering-menu/` | orphan |
@@ -109,8 +109,8 @@ The site links 28 PDFs; the 8 linked from the current nav are the ones that matt
 | `/wp-content/uploads/2026/11/Holiday2026.pdf` | `/promotions/` (Holiday Packages card) |
 | `/wp-content/uploads/2026/11/BlackFriday2026.pdf` | `/promotions/` (Gift Card Sale card, which ends today) |
 | `/wp-content/uploads/2026/01/football-flyer26.pdf` | `/promotions/` (Football Specials card) |
-| `/wp-content/uploads/2026/04/FINALFarmIslp-TakeOutMenu2026Web.pdf` | `/takeout-menu-farmingdale-islip/` |
-| `/wp-content/uploads/2026/04/2026SpeonkTakeOutMenuWeb.pdf` | `/takeout-menu-speonk/` |
+| `/wp-content/uploads/2026/04/FINALFarmIslp-TakeOutMenu2026Web.pdf` | `/menu-farmingdale-islip/` |
+| `/wp-content/uploads/2026/04/2026SpeonkTakeOutMenuWeb.pdf` | `/menu-speonk/` |
 | `/wp-content/uploads/2026/08/catering-menu-new-2026.pdf` | `/catering-menu/` |
 | `/wp-content/uploads/2022/07/DineinMenuPastaNite2022WEB.pdf` | decision 4 |
 | `/wp-content/uploads/2024/09/CHICKEN-NIGHT-2.pdf`, `/2026/01/chicken-night26.pdf` | decision 4 |
@@ -121,7 +121,7 @@ The other ~20 are 2020–2025 menus and flyers. Suggest letting them 404 (or one
 
 ## Decisions needed
 
-1. **Dine-in menus.** The rebuild only has takeout menus. Send dine-in URLs to the takeout menu for that location (as above), or add dine-in menus to the rebuild?
+1. ~~**Dine-in menus.**~~ **Decided:** no separate dine-in menu. The printed dine-in menu is a condensed takeout menu and the kitchen makes everything for dine-in, so each location has one full menu labeled "Dine-In & Takeout" (`/menu-speonk/`, `/menu-farmingdale-islip/`), and the old dine-in URLs redirect to it. Still to confirm: dine-in and takeout prices are the same.
 2. **Speonk drink menu.** Send it to `/speonk/` (as above), or add a drink menu, since the bar is a selling point at Speonk?
 3. **Employment.** There's no jobs page. Send it to `/contact/` (would need a "Job inquiry" type on the form), to `/`, or build a small `/employment/` page?
 4. **Weekly specials** (Pasta Night, Chicken Night, Seafood Night, Happy Hour). Are they still running? If so, they could go on `/promotions/` as cards and the PDFs redirect there. If not, redirect them to the menu pages or let them 404.
