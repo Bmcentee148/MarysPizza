@@ -20,14 +20,14 @@ SRC = Path(__file__).resolve().parent
 #   css: extra stylesheets from pages/, inlined at the end of the site <style>
 #   js:  extra scripts from pages/, inlined before </body>
 PAGES = {
-    "takeout-menu-speonk": {
-        "title": "Takeout Menu — Speonk | Mary's Pizza and Pasta",
-        "description": "Full takeout menu for Mary's Pizza and Pasta at the Olde Speonk Inn — pizza, pasta, chicken, steak, and more.",
+    "menu-speonk": {
+        "title": "Dine-In & Takeout Menu — Speonk | Mary's Pizza and Pasta",
+        "description": "Full dine-in and takeout menu for Mary's Pizza and Pasta at the Olde Speonk Inn — pizza, pasta, chicken, steak, and more.",
         "css": ["menu.css"],
     },
-    "takeout-menu-farmingdale-islip": {
-        "title": "Takeout Menu — Farmingdale &amp; Islip Terrace | Mary's Pizza and Pasta",
-        "description": "Full takeout menu for Mary's Pizza and Pasta in Farmingdale and Islip Terrace, NY — pizza, pasta, heroes, wings, entrees, and more.",
+    "menu-farmingdale-islip": {
+        "title": "Dine-In & Takeout Menu — Farmingdale &amp; Islip Terrace | Mary's Pizza and Pasta",
+        "description": "Full dine-in and takeout menu for Mary's Pizza and Pasta in Farmingdale and Islip Terrace, NY — pizza, pasta, heroes, wings, entrees, and more.",
         "css": ["menu.css"],
     },
     "catering-menu": {
