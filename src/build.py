@@ -210,6 +210,33 @@ def check_site_rules(scans, errors):
             errors.append(f'/contact/: Netlify form {f.get("name")!r} needs <input type="hidden" name="form-name" value="{f.get("name")}">')
 
 
+def check_redirects(errors):
+    """netlify.toml redirects (old WordPress URLs): every target must be a page this
+    site builds or a PLANNED one, and no source may be a page that exists (Netlify
+    serves an existing file instead of redirecting). Parsed with a regex rather than
+    tomllib, which needs Python 3.11+."""
+    toml = (SRC.parent / "netlify.toml").read_text(encoding="utf-8")
+    built = {url_for(name) for name in ["index", *PAGES]}
+    seen = set()
+    for block in toml.split("[[redirects]]")[1:]:
+        src = re.search(r'^\s*from\s*=\s*"([^"]+)"', block, re.M)
+        dst = re.search(r'^\s*to\s*=\s*"([^"]+)"', block, re.M)
+        if not (src and dst):
+            errors.append(f"netlify.toml: a [[redirects]] block is missing from/to: {block.strip()[:60]!r}")
+            continue
+        src, dst = src.group(1), dst.group(1)
+        if src in seen:
+            errors.append(f"netlify.toml: {src} is redirected twice")
+        seen.add(src)
+        if src.rstrip("/") + "/" in built:
+            errors.append(f"netlify.toml: {src} is a page on this site, so Netlify would never redirect it")
+        path = urlsplit(dst).path
+        if urlsplit(dst).fragment:
+            errors.append(f"netlify.toml: {src} -> {dst}: leave out the #fragment, Netlify may not keep it")
+        if path not in built and path not in PLANNED:
+            errors.append(f"netlify.toml: {src} -> {dst} points to a page that isn't built (add it to PAGES or PLANNED)")
+
+
 def check_promo_dates(pages, errors, notes):
     """Promotions carry data-ends="YYYY-MM-DD" (last day shown). The page hides them
     after that date; this reminds you to delete the expired ones."""
@@ -285,6 +312,7 @@ def build():
     for name, html in pages.items():
         check_page(name, html, scans, site_url, errors, notes)
     check_site_rules(scans, errors)
+    check_redirects(errors)
     check_promo_dates(pages, errors, notes)
 
     if errors:

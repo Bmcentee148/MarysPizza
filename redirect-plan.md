@@ -2,7 +2,7 @@
 
 Crawled 2026-11-27 from `https://maryspizzaandpasta.com` (Yoast sitemap index, all 5 sub-sitemaps, then every internal link followed). 44 URLs in the sitemap, all return 200; the crawl found no extra pages beyond WordPress system URLs. A `site:` search showed nothing else indexed. Two broken links (`/lincoln-wortman-ave/`, `/projects/`) come from a leftover theme demo page and already 404.
 
-All redirects are 301s in `netlify.toml`. Netlify matches with or without the trailing slash, so one rule per path is enough.
+**Status: written.** All 49 rules are in `netlify.toml` (301s), and the build fails if a target stops being a real page. Netlify matches with or without the trailing slash, so one rule per path is enough.
 
 ## How the old site is structured
 
@@ -63,7 +63,7 @@ Order Now                     HungerRush (external, unchanged)
 | `/dine-in-menu/` | `/dine-in-menu-farmingdale/` | orphan, 2022; old shared dine-in menu, either store fits |
 | `/2021-dine-in-menu/` | `/dine-in-menu-farmingdale/` | orphan, 2021; same |
 | `/speonk-dine-in-menu/` | `/dine-in-menu-speonk/` | in nav |
-| `/speonk-drink-menu/` | `/dine-in-menu-speonk/#drinks` | in nav; the Speonk dine-in menu has the full drink list |
+| `/speonk-drink-menu/` | `/dine-in-menu-speonk/` | in nav; the Speonk dine-in menu has the full drink list (its Drinks section is one tap away; redirects skip the `#drinks` part because Netlify may not keep it) |
 | `/catering-menu-new/` | `/catering-menu/` | in nav |
 | `/catering-25/` | `/catering-menu/` | orphan |
 | `/speonk-catering-menu/` | `/catering-menu/` | orphan, 2021 |
@@ -122,7 +122,7 @@ The other ~20 are 2020–2025 menus and flyers. Suggest letting them 404 (or one
 ## Decisions
 
 1. **Dine-in menus. Done:** separate dine-in and takeout menus. Each store has its own dine-in page (`/dine-in-menu-speonk/`, `/dine-in-menu-farmingdale/`, `/dine-in-menu-islip-terrace/`); takeout stays at `/takeout-menu-speonk/` and the shared `/takeout-menu-farmingdale-islip/`.
-2. **Speonk drink menu. Changed:** the Speonk dine-in menu includes the full bar and wine list, so `/speonk-drink-menu/` redirects to its Drinks section (`/dine-in-menu-speonk/#drinks`).
+2. **Speonk drink menu. Changed:** the Speonk dine-in menu includes the full bar and wine list, so `/speonk-drink-menu/` redirects to that page (`/dine-in-menu-speonk/`, whose Drinks section is one tap away).
 3. **Employment. Done:** `/employment-new/` redirects to `/contact/?type=employment`, which opens the form with the new Employment inquiry type selected.
 4. **Weekly specials. Done:** no full specials menus on the site. The `#weekly-specials` card on `/promotions/` summarizes Chicken Night (Mon–Wed 4–9pm, $28) and Seafood Night (Thursday 4–9pm, $30), Farmingdale and Islip Terrace only; Speonk has no weekly specials. All old specials PDFs redirect to `/promotions/`, including Pasta Night and Happy Hour, which aren't on the card (not confirmed as running).
 5. **Islip Terrace and Farmingdale pages. Decided:** both get built before cutover, and their rules point straight at them.

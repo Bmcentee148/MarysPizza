@@ -111,7 +111,6 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
       <h2>Before cutover</h2>
       <ul class="todo">
         <li>Build the Islip Terrace and Farmingdale location pages</li>
-        <li>Write the redirect rules into <code>netlify.toml</code></li>
       </ul>
     </div>
     <div class="panel">
@@ -125,14 +124,14 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
     <h2>Decisions</h2>
     <div class="decisions">
       <div class="dec"><h3>Dine-in menus</h3><p>Separate dine-in and takeout menus, with a dine-in page for each store. Old dine-in URLs redirect to them.</p></div>
-      <div class="dec"><h3>Speonk drink menu</h3><p>The Speonk dine-in menu includes the full bar and wine list, so the old drink menu redirects to its Drinks section.</p></div>
+      <div class="dec"><h3>Speonk drink menu</h3><p>The Speonk dine-in menu includes the full bar and wine list, so the old drink menu redirects there.</p></div>
       <div class="dec"><h3>Employment</h3><p>Redirects to Contact with the new Employment inquiry type selected.</p></div>
       <div class="dec"><h3>Weekly specials</h3><p>No full specials menus. A Weekly Specials card on Promotions covers Chicken and Seafood Night (Farmingdale and Islip Terrace), and the old flyers redirect there.</p></div>
       <div class="dec"><h3>Islip Terrace and Farmingdale</h3><p>Both pages get built before cutover, so their redirects point straight at them.</p></div>
     </div>
   </section>
 
-  <p class="foot">Source: crawl of the Yoast sitemap (44 pages) plus every internal link. Full table with notes in <code>redirect-plan.md</code>.</p>
+  <p class="foot">All rules are written in <code>netlify.toml</code>. Source: crawl of the Yoast sitemap (44 pages) plus every internal link. Full table with notes in <code>redirect-plan.md</code>.</p>
 </div>
 
 <script>
@@ -143,7 +142,7 @@ const rows=[
   {to:'/farmingdale/', name:'Farmingdale location', planned:true, src:[['/home-farmingdale/',N],['/about-us-farmingdale/',N],['/home-farmingdale-2025/',O]]},
   {to:'/dine-in-menu-farmingdale/', name:'Farmingdale dine-in menu', src:[['/farmingdale-dineinmenu/',N],['/dine-in-menu/',O],['/2021-dine-in-menu/',O]]},
   {to:'/dine-in-menu-islip-terrace/', name:'Islip Terrace dine-in menu', src:[['/islip-dine-in-menu/',O]]},
-  {to:'/dine-in-menu-speonk/', name:'Speonk dine-in menu', note:'The drink menu lands on its Drinks section', src:[['/speonk-dine-in-menu/',N],['/speonk-drink-menu/',N]]},
+  {to:'/dine-in-menu-speonk/', name:'Speonk dine-in menu', note:'Also takes the old drink menu', src:[['/speonk-dine-in-menu/',N],['/speonk-drink-menu/',N]]},
   {to:'/takeout-menu-farmingdale-islip/', name:'Farmingdale & Islip takeout menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/take-out-menu/',O],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
   {to:'/takeout-menu-speonk/', name:'Speonk takeout menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
   {to:'/catering-menu/', name:'Catering menu', src:[['/catering-menu-new/',N],['/catering-25/',O],['/speonk-catering-menu/',O],['catering-menu-new-2026.pdf',P]]},
