@@ -915,13 +915,13 @@
   // ---- Location data --------------------------------------------------
   // orderUrl = HungerRush (or other) online ordering link for that location.
   // takeoutMenuUrl / dineInMenuUrl / cateringMenuUrl = menu page URLs (root-relative, clean URLs).
-  // dineInMenuUrl is null where there's no dine-in menu page yet (Speonk): the homepage hides its Dine-In card.
+  // dineInMenuUrl can be null for a location without a dine-in menu page: the homepage then hides its Dine-In card.
   const LOCATIONS = {
     speonk: {
       name: 'Speonk',
       orderUrl: '__ORDER_URL__', // set in TEXT in build.py
       takeoutMenuUrl: '/takeout-menu-speonk/',
-      dineInMenuUrl: null,
+      dineInMenuUrl: '/dine-in-menu-speonk/',
       cateringMenuUrl: '/catering-menu/'
     },
     islip: {

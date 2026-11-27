@@ -39,6 +39,7 @@
   /* catering prices run to 3 digits in both columns */
   .menu-cols.cater .item .pr2 b,.menu-cols.cater .col-heads span{width:32px}
 
+  .menu-part{font-weight:900;font-size:clamp(2rem,4.5vw,2.8rem);line-height:1;margin:34px 0 18px;padding-top:30px;border-top:1px solid var(--line-2)}
   .note-block{background:var(--card);border:1px solid var(--line-2);border-radius:14px;padding:18px 22px;font-size:.9rem;color:var(--ink-2);margin:8px 0 34px}
   .note-block b{color:var(--ink)}
 

@@ -30,6 +30,11 @@ PAGES = {
         "description": "Full takeout menu for Mary's Pizza and Pasta in Farmingdale and Islip Terrace, NY — pizza, pasta, heroes, wings, entrees, and more.",
         "css": ["menu.css"],
     },
+    "dine-in-menu-speonk": {
+        "title": "Dine-In Menu — Speonk | Mary's Pizza and Pasta",
+        "description": "Dine-in menu for Mary's Pizza and Pasta at the Olde Speonk Inn — pasta, chicken, steak and seafood entrées, flatbreads, signature cocktails, draft beer and a full wine list.",
+        "css": ["menu.css"],
+    },
     "dine-in-menu-farmingdale": {
         "title": "Dine-In Menu — Farmingdale | Mary's Pizza and Pasta",
         "description": "Dine-in menu for Mary's Pizza and Pasta on Main Street in Farmingdale, NY — pasta, chicken and seafood entrées, flatbreads, salads, beer and wine.",
