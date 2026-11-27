@@ -1,20 +1,3 @@
 [build]
   command = "cd src && python3 build.py"
   publish = "dist"
-
-# The menu pages used to live at /<name>.html. Keep old links, bookmarks
-# and printed QR codes working by sending them to the clean URLs.
-[[redirects]]
-  from = "/takeout-menu-speonk.html"
-  to = "/takeout-menu-speonk/"
-  status = 301
-
-[[redirects]]
-  from = "/takeout-menu-farmingdale-islip.html"
-  to = "/takeout-menu-farmingdale-islip/"
-  status = 301
-
-[[redirects]]
-  from = "/catering-menu.html"
-  to = "/catering-menu/"
-  status = 301
