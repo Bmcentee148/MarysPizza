@@ -78,7 +78,7 @@ Order Now                     HungerRush (external, unchanged)
 | `/contact-farmingdale/` | `/contact/` | orphan |
 | `/contact-islip-old/` | `/contact/` | orphan |
 | `/contact-islip-terrace-2024/` | `/contact/` | orphan |
-| `/employment-new/` | `/contact/` | in nav; the contact form gets an employment option (decided) |
+| `/employment-new/` | `/contact/?type=employment` | in nav; opens the form with Employment selected |
 | `/gallery/` | (none) | same URL on the rebuild, no rule needed |
 | `/bwg_gallery/marys-pizza/` | `/gallery/` | gallery plugin page (noindex) |
 | `/bwg_gallery/new-gallery/` | `/gallery/` | same |
@@ -123,8 +123,8 @@ The other ~20 are 2020–2025 menus and flyers. Suggest letting them 404 (or one
 
 1. ~~**Dine-in menus.**~~ **Decided:** no separate dine-in menu. The printed dine-in menu is a condensed takeout menu and the kitchen makes everything for dine-in, so each location has one full menu labeled "Dine-In & Takeout" (`/menu-speonk/`, `/menu-farmingdale-islip/`), and the old dine-in URLs redirect to it. Still to confirm: dine-in and takeout prices are the same.
 2. **Speonk drink menu. Decided:** no drink menu. `/speonk-drink-menu/` redirects to `/speonk/`, which already mentions the bar, cocktails, beer and wine.
-3. **Employment. Decided:** `/employment-new/` redirects to `/contact/`. The form needs an "Employment" inquiry type added first (it doesn't have one yet).
-4. **Weekly specials. Decided:** no full specials menus on the site (too many menus was a problem on the old site). One "Weekly Specials" card on `/promotions/` summarizes each night (days, hours, price, which locations), and the old flyer PDFs redirect there. Needs from the owner: which locations run each special and the current days and prices (the flyers disagree: Chicken Night is "Every Wednesday" on the 2024 flyer and "Monday–Wednesday" on the 2026 one).
+3. **Employment. Done:** `/employment-new/` redirects to `/contact/?type=employment`, which opens the form with the new Employment inquiry type selected.
+4. **Weekly specials. Done:** no full specials menus on the site. The `#weekly-specials` card on `/promotions/` summarizes Chicken Night (Mon–Wed 4–9pm, $28) and Seafood Night (Thursday 4–9pm, $30), Farmingdale and Islip Terrace only; Speonk has no weekly specials. All old specials PDFs redirect to `/promotions/`, including Pasta Night and Happy Hour, which aren't on the card (not confirmed as running).
 5. **Islip Terrace and Farmingdale pages. Decided:** both get built before cutover, and their rules point straight at them.
 
 ## Before cutover
