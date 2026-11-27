@@ -665,7 +665,7 @@
     <div class="sec-head center reveal">
       <span class="eyebrow center">The Menu</span>
       <h2>Pick your location, then your menu</h2>
-      <p>Each Mary's has its own menu and catering menu. Choose where you're ordering from to see the right one.</p>
+      <p>Each Mary's has its own takeout and catering menu. Choose where you're ordering from to see the right one.</p>
     </div>
 
     <div class="loc-pills reveal" role="group" aria-label="Choose your location">
@@ -677,9 +677,9 @@
     <div class="menu-cards reveal">
       <div class="menu-card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-        <h3>Dine-In &amp; Takeout Menu</h3>
-        <p>Pizza, pasta, heroes, and more — eat in or take out.</p>
-        <a class="btn btn-red" id="menuLink" href="/menu-farmingdale-islip/" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Farmingdale</span> Menu</span></a>
+        <h3>Takeout Menu</h3>
+        <p>Pizza, pasta, heroes, and more — order ahead for pickup or delivery.</p>
+        <a class="btn btn-red" id="takeoutMenuLink" href="/takeout-menu-farmingdale-islip/" target="_blank" rel="noopener"><span class="btn-label">View <span class="loc-name">Farmingdale</span> Takeout Menu</span></a>
       </div>
       <div class="menu-card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a10 10 0 0 1 20 0Z"/><path d="M2 20h20"/><path d="M12 4v3"/><circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/></svg></div>
@@ -907,24 +907,24 @@
 <script>
   // ---- Location data --------------------------------------------------
   // orderUrl = HungerRush (or other) online ordering link for that location.
-  // menuUrl / cateringMenuUrl = menu page URLs (root-relative, clean URLs).
+  // takeoutMenuUrl / cateringMenuUrl = menu page URLs (root-relative, clean URLs).
   const LOCATIONS = {
     speonk: {
       name: 'Speonk',
       orderUrl: '__ORDER_URL__', // set in TEXT in build.py
-      menuUrl: '/menu-speonk/',
+      takeoutMenuUrl: '/takeout-menu-speonk/',
       cateringMenuUrl: '/catering-menu/'
     },
     islip: {
       name: 'Islip Terrace',
       orderUrl: '__ORDER_URL__', // set in TEXT in build.py
-      menuUrl: '/menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace menu
+      takeoutMenuUrl: '/takeout-menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace takeout menu
       cateringMenuUrl: '/catering-menu/'
     },
     farmingdale: {
       name: 'Farmingdale',
       orderUrl: '__ORDER_URL__', // set in TEXT in build.py
-      menuUrl: '/menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace menu
+      takeoutMenuUrl: '/takeout-menu-farmingdale-islip/', // shared Farmingdale/Islip Terrace takeout menu
       cateringMenuUrl: '/catering-menu/'
     }
   };
@@ -958,9 +958,9 @@
       btn.classList.toggle('active', btn.dataset.loc === id);
     });
     document.querySelectorAll('.menu-card .loc-name').forEach(el => el.textContent = loc.name);
-    const tOut = document.getElementById('menuLink');
+    const tOut = document.getElementById('takeoutMenuLink');
     const cAt = document.getElementById('cateringMenuLink');
-    if(tOut) tOut.href = loc.menuUrl;
+    if(tOut) tOut.href = loc.takeoutMenuUrl;
     if(cAt) cAt.href = loc.cateringMenuUrl;
 
     // locations section active card
@@ -971,24 +971,24 @@
     saveLocation(id);
   }
 
-  // On a location-specific menu page (not catering), the page itself decides the
-  // location: these return the locations whose menu is this page.
+  // On a location-specific menu page (takeout), the page itself decides the
+  // location: these return the locations whose takeout menu is this page.
   function currentPath(){
     let p = location.pathname.replace(/index\.html$/, '');
     return p.endsWith('/') ? p : p + '/';
   }
   function locationsForThisMenu(){
-    return Object.keys(LOCATIONS).filter(id => LOCATIONS[id].menuUrl === currentPath());
+    return Object.keys(LOCATIONS).filter(id => LOCATIONS[id].takeoutMenuUrl === currentPath());
   }
 
-  // Header location picker: on a location menu page, picking a location whose
-  // menu is a different page goes to that page (the choice is saved
+  // Header location picker: on a takeout menu page, picking a location whose
+  // takeout menu is a different page goes to that page (the choice is saved
   // first, so the new page opens with it selected).
   function pickLocation(id){
     applyLocation(id);
     const onMenu = locationsForThisMenu();
     if(onMenu.length && !onMenu.includes(id) && LOCATIONS[id]){
-      location.href = LOCATIONS[id].menuUrl;
+      location.href = LOCATIONS[id].takeoutMenuUrl;
     }
   }
 
@@ -1044,7 +1044,7 @@
     // a location page (e.g. /speonk/) marks its location with data-page-loc
     const pageLoc = document.querySelector('[data-page-loc]');
     if(pageLoc && LOCATIONS[pageLoc.dataset.pageLoc]) startId = pageLoc.dataset.pageLoc;
-    // landing on a location menu page: make the picker match the menu shown
+    // landing on a takeout menu page: make the picker match the menu shown
     const onMenu = locationsForThisMenu();
     if(onMenu.length && !onMenu.includes(startId)){
       startId = onMenu.includes(DEFAULT_LOC) ? DEFAULT_LOC : onMenu[0];
