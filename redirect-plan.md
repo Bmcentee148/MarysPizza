@@ -62,8 +62,8 @@ Order Now                     HungerRush (external, unchanged)
 | `/islip-dine-in-menu/` | `/dine-in-menu-islip-terrace/` | orphan (the old nav linked Islip to the Farmingdale page) |
 | `/dine-in-menu/` | `/dine-in-menu-farmingdale/` | orphan, 2022; old shared dine-in menu, either store fits |
 | `/2021-dine-in-menu/` | `/dine-in-menu-farmingdale/` | orphan, 2021; same |
-| `/speonk-dine-in-menu/` | Speonk dine-in menu (to build; `/takeout-menu-speonk/` until then) | in nav |
-| `/speonk-drink-menu/` | `/speonk/` | in nav; no drink menu on the rebuild (decided) |
+| `/speonk-dine-in-menu/` | `/dine-in-menu-speonk/` | in nav |
+| `/speonk-drink-menu/` | `/dine-in-menu-speonk/#drinks` | in nav; the Speonk dine-in menu has the full drink list |
 | `/catering-menu-new/` | `/catering-menu/` | in nav |
 | `/catering-25/` | `/catering-menu/` | orphan |
 | `/speonk-catering-menu/` | `/catering-menu/` | orphan, 2021 |
@@ -121,8 +121,8 @@ The other ~20 are 2020–2025 menus and flyers. Suggest letting them 404 (or one
 
 ## Decisions
 
-1. **Dine-in menus. Done for two stores:** separate dine-in and takeout menus. Farmingdale and Islip Terrace each have their own dine-in page (`/dine-in-menu-farmingdale/`, `/dine-in-menu-islip-terrace/`) next to their shared takeout menu. Speonk's dine-in page is still to come (waiting on photos of its printed menu); its old dine-in URL points at the Speonk takeout menu until then.
-2. **Speonk drink menu. Decided:** no drink menu. `/speonk-drink-menu/` redirects to `/speonk/`, which already mentions the bar, cocktails, beer and wine.
+1. **Dine-in menus. Done:** separate dine-in and takeout menus. Each store has its own dine-in page (`/dine-in-menu-speonk/`, `/dine-in-menu-farmingdale/`, `/dine-in-menu-islip-terrace/`); takeout stays at `/takeout-menu-speonk/` and the shared `/takeout-menu-farmingdale-islip/`.
+2. **Speonk drink menu. Changed:** the Speonk dine-in menu includes the full bar and wine list, so `/speonk-drink-menu/` redirects to its Drinks section (`/dine-in-menu-speonk/#drinks`).
 3. **Employment. Done:** `/employment-new/` redirects to `/contact/?type=employment`, which opens the form with the new Employment inquiry type selected.
 4. **Weekly specials. Done:** no full specials menus on the site. The `#weekly-specials` card on `/promotions/` summarizes Chicken Night (Mon–Wed 4–9pm, $28) and Seafood Night (Thursday 4–9pm, $30), Farmingdale and Islip Terrace only; Speonk has no weekly specials. All old specials PDFs redirect to `/promotions/`, including Pasta Night and Happy Hour, which aren't on the card (not confirmed as running).
 5. **Islip Terrace and Farmingdale pages. Decided:** both get built before cutover, and their rules point straight at them.

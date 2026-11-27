@@ -36,7 +36,7 @@
   .lp-more{margin-top:14px;text-align:right}
   .lp-more a{color:var(--red);font-weight:700;border-bottom:1px solid rgba(208,8,30,.3)}
 
-  .lp-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  .lp-menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:26px}
   .lp-menu-card{background:var(--card);border:1px solid var(--line-2);border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:4px;transition:border-color .18s ease,transform .18s ease}
   .lp-menu-card:hover{border-color:var(--red);transform:translateY(-2px)}
   .lp-menu-card b{font-family:"Archivo";font-weight:800;font-size:1.2rem}
