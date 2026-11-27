@@ -66,6 +66,7 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
 .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
 .panel p{color:var(--ink-2);font-size:.9rem}
+.todo{display:flex;flex-direction:column;gap:6px;padding-left:1.2em;color:var(--ink-2);font-size:.9rem}
 
 .decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
 .dec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
@@ -91,7 +92,7 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
   <section class="stats" aria-label="Summary">
     <div class="stat r"><b id="nRedirect">0</b><span>old URLs redirect (301)</span></div>
     <div class="stat"><b>2</b><span>keep the same URL (<code>/</code>, <code>/gallery/</code>)</span></div>
-    <div class="stat g"><b id="nPending">0</b><span>specials PDFs waiting on a decision</span></div>
+    <div class="stat g"><b>2</b><span>location pages to build before cutover</span></div>
     <div class="stat"><b id="n404">0</b><span>pages and PDFs left to 404</span></div>
   </section>
 
@@ -101,16 +102,20 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
       <span class="chip nav">/in-nav/</span> in the old site's menu
       <span class="chip orphan">/orphan/</span> unlinked old version
       <span class="chip pdf">file.pdf</span> linked PDF
-      <span class="flag">D1</span> depends on a decision below
     </div>
     <div class="rows" id="rows"></div>
   </section>
 
   <section class="split">
     <div class="panel">
-      <h2>Waiting on a decision</h2>
-      <p>Weekly specials flyers from the old nav. No matching page on the rebuild yet (decision 4).</p>
-      <div class="srcs" id="pending"></div>
+      <h2>Before cutover</h2>
+      <ul class="todo">
+        <li>Build the Islip Terrace and Farmingdale location pages</li>
+        <li>Add an Employment option to the contact form</li>
+        <li>Add a Weekly Specials card to Promotions (days, prices, locations)</li>
+        <li>Add the dine-in hero note to the menus</li>
+        <li>Write the redirect rules into <code>netlify.toml</code></li>
+      </ul>
     </div>
     <div class="panel">
       <h2>Left to 404</h2>
@@ -120,13 +125,13 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
   </section>
 
   <section style="display:flex;flex-direction:column;gap:14px">
-    <h2>Decisions needed</h2>
+    <h2>Decisions</h2>
     <div class="decisions">
-      <div class="dec"><h3><span class="flag">D1</span>Dine-in menus · decided</h3><p>One full menu per location, labeled Dine-In &amp; Takeout. Old dine-in URLs redirect to it. Still to confirm: prices are the same for both.</p></div>
-      <div class="dec"><h3><span class="flag">D2</span>Speonk drink menu</h3><p>Goes to the Speonk page for now. Could get its own drink menu, since the bar is a draw there.</p></div>
-      <div class="dec"><h3><span class="flag">D3</span>Employment</h3><p>No jobs page. Contact (with a job inquiry option), the homepage, or a small employment page.</p></div>
-      <div class="dec"><h3><span class="flag">D4</span>Weekly specials</h3><p>Pasta, Chicken and Seafood Night and Happy Hour. If still running, add them to Promotions and redirect the PDFs there.</p></div>
-      <div class="dec"><h3><span class="flag">D5</span>Islip Terrace and Farmingdale pages</h3><p>Not built yet. Build them before cutover, or point their redirects at the homepage locations section until they exist.</p></div>
+      <div class="dec"><h3>Dine-in menus</h3><p>One full menu per location, labeled Dine-In &amp; Takeout. Old dine-in URLs redirect to it.</p></div>
+      <div class="dec"><h3>Speonk drink menu</h3><p>No drink menu. The old page redirects to the Speonk page, which covers the bar.</p></div>
+      <div class="dec"><h3>Employment</h3><p>Redirects to Contact, which gets an Employment inquiry type.</p></div>
+      <div class="dec"><h3>Weekly specials</h3><p>No full specials menus. One Weekly Specials card on Promotions, and the old flyers redirect there.</p></div>
+      <div class="dec"><h3>Islip Terrace and Farmingdale</h3><p>Both pages get built before cutover, so their redirects point straight at them.</p></div>
     </div>
   </section>
 
@@ -136,18 +141,17 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
 <script>
 const N='nav', O='orphan', P='pdf';
 const rows=[
-  {to:'/speonk/', name:'Speonk location', src:[['/home-speonk/',N],['/about-us-speonk/',N],['/speonk-drink-menu/',N,'D2']]},
+  {to:'/speonk/', name:'Speonk location', src:[['/home-speonk/',N],['/about-us-speonk/',N],['/speonk-drink-menu/',N]]},
   {to:'/islip-terrace/', name:'Islip Terrace location', planned:true, src:[['/home-islip/',N],['/about-us-islip/',N],['/home-islip-2024/',O]]},
   {to:'/farmingdale/', name:'Farmingdale location', planned:true, src:[['/home-farmingdale/',N],['/about-us-farmingdale/',N],['/home-farmingdale-2025/',O]]},
-  {to:'/menu-farmingdale-islip/', name:'Farmingdale & Islip menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/farmingdale-dineinmenu/',N,'D1'],['/take-out-menu/',O],['/islip-dine-in-menu/',O,'D1'],['/dine-in-menu/',O,'D1'],['/2021-dine-in-menu/',O,'D1'],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
-  {to:'/menu-speonk/', name:'Speonk menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N,'D1'],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
+  {to:'/menu-farmingdale-islip/', name:'Farmingdale & Islip menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/farmingdale-dineinmenu/',N],['/take-out-menu/',O],['/islip-dine-in-menu/',O],['/dine-in-menu/',O],['/2021-dine-in-menu/',O],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
+  {to:'/menu-speonk/', name:'Speonk menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
   {to:'/catering-menu/', name:'Catering menu', src:[['/catering-menu-new/',N],['/catering-25/',O],['/speonk-catering-menu/',O],['catering-menu-new-2026.pdf',P]]},
-  {to:'/promotions/', name:'Promotions', src:[['Holiday2026.pdf',P],['BlackFriday2026.pdf',P],['football-flyer26.pdf',P]]},
-  {to:'/contact/', name:'Contact', src:[['/contact-main/',N],['/employment-new/',N,'D3'],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},
+  {to:'/promotions/', name:'Promotions', note:'Specials flyers land on a Weekly Specials card', src:[['Holiday2026.pdf',P],['BlackFriday2026.pdf',P],['football-flyer26.pdf',P],['DineinMenuPastaNite2022WEB.pdf',P],['CHICKEN-NIGHT-2.pdf',P],['chicken-night26.pdf',P],['Seafood-Night.pdf',P],['happy-hour-3.pdf',P]]},
+  {to:'/contact/', name:'Contact', src:[['/contact-main/',N],['/employment-new/',N],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},
   {to:'/gallery/', name:'Gallery', note:'Same URL as the old gallery page', src:[['/bwg_gallery/marys-pizza/',O],['/bwg_gallery/new-gallery/',O]]},
   {to:'/', name:'Homepage', note:'Old homepage versions', src:[['/homepage/',O],['/homepage2021/',O],['/home2020/',O],['/landing-old22/',O],['/land/',O],['/welcome-to-marys-pizza-and-pasta3/',O]]},
 ];
-const pending=['DineinMenuPastaNite2022WEB.pdf','CHICKEN-NIGHT-2.pdf','chicken-night26.pdf','Seafood-Night.pdf','happy-hour-3.pdf'];
 const gone=[['/home-2/','theme demo'],['/2020/04/28/hello-world/'],['/2020/04/'],['/category/uncategorized/'],['/author/admin/'],['/wp-login.php'],['/wp-admin/*'],['/feed/'],['/comments/feed/'],['/xmlrpc.php']];
 const OLD_PDFS=20;
 
@@ -157,7 +161,7 @@ const arrow='<svg viewBox="0 0 26 14" fill="none" aria-hidden="true"><path d="M1
 let total=0;
 document.getElementById('rows').innerHTML=rows.map(r=>{
   total+=r.src.length;
-  const note=r.planned?'Not built yet. Use /#locations until it is (D5)':(r.note||'');
+  const note=r.planned?'Not built yet. Build before cutover':(r.note||'');
   return `<div class="row">
     <div class="srcs">${r.src.map(s=>chip(...s)).join('')}</div>
     <div class="arrow">${arrow}</div>
@@ -167,9 +171,7 @@ document.getElementById('rows').innerHTML=rows.map(r=>{
       ${note?`<div class="note">${esc(note)}</div>`:''}
     </div></div>`;
 }).join('');
-document.getElementById('pending').innerHTML=pending.map(u=>chip(u,P,'D4')).join('');
 document.getElementById('gone').innerHTML=gone.map(([u])=>chip(u,O)).join('')+chip(`~${OLD_PDFS} older PDFs`,P);
 document.getElementById('nRedirect').textContent=total;
-document.getElementById('nPending').textContent=pending.length;
 document.getElementById('n404').textContent=gone.length+OLD_PDFS;
 </script>

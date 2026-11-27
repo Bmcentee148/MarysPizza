@@ -33,20 +33,20 @@ Order Now                     HungerRush (external, unchanged)
 
 ## Redirect table
 
-**⚠ Islip Terrace and Farmingdale location pages aren't built yet.** Rules that point at `/islip-terrace/` or `/farmingdale/` would land on the 404 page if we cut over before those pages exist. Either build them first, or point those rules at `/#locations` for now and switch them later (marked † below).
+**Islip Terrace and Farmingdale location pages** will be built before cutover, so their rules point straight at `/islip-terrace/` and `/farmingdale/`. Don't switch the domain until both pages exist (until then those URLs show the 404 page).
 
 ### Location pages (top priority: most likely what Google Business Profile and other listings link to)
 
 | Old URL | New URL | Notes |
 |---|---|---|
 | `/home-speonk/` | `/speonk/` | in nav |
-| `/home-islip/` | `/islip-terrace/` † | in nav |
-| `/home-farmingdale/` | `/farmingdale/` † | in nav |
-| `/home-islip-2024/` | `/islip-terrace/` † | old version |
-| `/home-farmingdale-2025/` | `/farmingdale/` † | old version |
+| `/home-islip/` | `/islip-terrace/` | in nav |
+| `/home-farmingdale/` | `/farmingdale/` | in nav |
+| `/home-islip-2024/` | `/islip-terrace/` | old version |
+| `/home-farmingdale-2025/` | `/farmingdale/` | old version |
 | `/about-us-speonk/` | `/speonk/` | in nav; store story lives on the location page now |
-| `/about-us-islip/` | `/islip-terrace/` † | in nav |
-| `/about-us-farmingdale/` | `/farmingdale/` † | in nav |
+| `/about-us-islip/` | `/islip-terrace/` | in nav |
+| `/about-us-farmingdale/` | `/farmingdale/` | in nav |
 
 ### Menus
 
@@ -63,7 +63,7 @@ Order Now                     HungerRush (external, unchanged)
 | `/dine-in-menu/` | `/menu-farmingdale-islip/` | orphan, 2022 |
 | `/2021-dine-in-menu/` | `/menu-farmingdale-islip/` | orphan, 2021 |
 | `/speonk-dine-in-menu/` | `/menu-speonk/` | in nav; dine-in |
-| `/speonk-drink-menu/` | `/speonk/` | in nav; **no drink menu on the rebuild** (decision 2) |
+| `/speonk-drink-menu/` | `/speonk/` | in nav; no drink menu on the rebuild (decided) |
 | `/catering-menu-new/` | `/catering-menu/` | in nav |
 | `/catering-25/` | `/catering-menu/` | orphan |
 | `/speonk-catering-menu/` | `/catering-menu/` | orphan, 2021 |
@@ -78,7 +78,7 @@ Order Now                     HungerRush (external, unchanged)
 | `/contact-farmingdale/` | `/contact/` | orphan |
 | `/contact-islip-old/` | `/contact/` | orphan |
 | `/contact-islip-terrace-2024/` | `/contact/` | orphan |
-| `/employment-new/` | `/contact/` | in nav; **no employment page on the rebuild** (decision 3) |
+| `/employment-new/` | `/contact/` | in nav; the contact form gets an employment option (decided) |
 | `/gallery/` | (none) | same URL on the rebuild, no rule needed |
 | `/bwg_gallery/marys-pizza/` | `/gallery/` | gallery plugin page (noindex) |
 | `/bwg_gallery/new-gallery/` | `/gallery/` | same |
@@ -112,20 +112,20 @@ The site links 28 PDFs; the 8 linked from the current nav are the ones that matt
 | `/wp-content/uploads/2026/04/FINALFarmIslp-TakeOutMenu2026Web.pdf` | `/menu-farmingdale-islip/` |
 | `/wp-content/uploads/2026/04/2026SpeonkTakeOutMenuWeb.pdf` | `/menu-speonk/` |
 | `/wp-content/uploads/2026/08/catering-menu-new-2026.pdf` | `/catering-menu/` |
-| `/wp-content/uploads/2022/07/DineinMenuPastaNite2022WEB.pdf` | decision 4 |
-| `/wp-content/uploads/2024/09/CHICKEN-NIGHT-2.pdf`, `/2026/01/chicken-night26.pdf` | decision 4 |
-| `/wp-content/uploads/2024/09/Seafood-Night.pdf` | decision 4 |
-| `/wp-content/uploads/2024/09/happy-hour-3.pdf` | decision 4 |
+| `/wp-content/uploads/2022/07/DineinMenuPastaNite2022WEB.pdf` | `/promotions/` (weekly specials) |
+| `/wp-content/uploads/2024/09/CHICKEN-NIGHT-2.pdf`, `/2026/01/chicken-night26.pdf` | `/promotions/` (weekly specials) |
+| `/wp-content/uploads/2024/09/Seafood-Night.pdf` | `/promotions/` (weekly specials) |
+| `/wp-content/uploads/2024/09/happy-hour-3.pdf` | `/promotions/` (weekly specials) |
 
 The other ~20 are 2020–2025 menus and flyers. Suggest letting them 404 (or one catch-all `/wp-content/uploads/*` → `/` if we'd rather never show a 404). Gallery images under `/wp-content/uploads/photo-gallery/` also 404.
 
-## Decisions needed
+## Decisions
 
 1. ~~**Dine-in menus.**~~ **Decided:** no separate dine-in menu. The printed dine-in menu is a condensed takeout menu and the kitchen makes everything for dine-in, so each location has one full menu labeled "Dine-In & Takeout" (`/menu-speonk/`, `/menu-farmingdale-islip/`), and the old dine-in URLs redirect to it. Still to confirm: dine-in and takeout prices are the same.
-2. **Speonk drink menu.** Send it to `/speonk/` (as above), or add a drink menu, since the bar is a selling point at Speonk?
-3. **Employment.** There's no jobs page. Send it to `/contact/` (would need a "Job inquiry" type on the form), to `/`, or build a small `/employment/` page?
-4. **Weekly specials** (Pasta Night, Chicken Night, Seafood Night, Happy Hour). Are they still running? If so, they could go on `/promotions/` as cards and the PDFs redirect there. If not, redirect them to the menu pages or let them 404.
-5. **Islip Terrace and Farmingdale pages.** Build them before cutover, or cut over with the † rules pointing at `/#locations` for now?
+2. **Speonk drink menu. Decided:** no drink menu. `/speonk-drink-menu/` redirects to `/speonk/`, which already mentions the bar, cocktails, beer and wine.
+3. **Employment. Decided:** `/employment-new/` redirects to `/contact/`. The form needs an "Employment" inquiry type added first (it doesn't have one yet).
+4. **Weekly specials. Decided:** no full specials menus on the site (too many menus was a problem on the old site). One "Weekly Specials" card on `/promotions/` summarizes each night (days, hours, price, which locations), and the old flyer PDFs redirect there. Needs from the owner: which locations run each special and the current days and prices (the flyers disagree: Chicken Night is "Every Wednesday" on the 2024 flyer and "Monday–Wednesday" on the 2026 one).
+5. **Islip Terrace and Farmingdale pages. Decided:** both get built before cutover, and their rules point straight at them.
 
 ## Before cutover
 
