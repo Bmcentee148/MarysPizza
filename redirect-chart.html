@@ -1,0 +1,175 @@
+<title>Mary's Redirect Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Libre+Franklin:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fan-in rows. Old URLs on the left funnel into one new page on the right; summary up top, decisions at the bottom. */
+:root{
+  --bg:#FBF6EC; --surface:#FFFDF8; --ink:#17130F; --ink-2:#4a4139; --ink-3:#7c7167;
+  --line:rgba(23,19,15,.14); --red:#C00719; --red-soft:rgba(192,7,25,.08);
+  --gold:#B57A16; --gold-soft:rgba(228,169,75,.18); --grey-soft:rgba(23,19,15,.06);
+  --f-display:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body:"Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#1A1612; --surface:#241F1A; --ink:#F3ECE1; --ink-2:#CFC4B6; --ink-3:#9C9083;
+  --line:rgba(243,236,225,.16); --red:#FF5A62; --red-soft:rgba(255,90,98,.12);
+  --gold:#E9B45C; --gold-soft:rgba(233,180,92,.16); --grey-soft:rgba(243,236,225,.07); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#1A1612; --surface:#241F1A; --ink:#F3ECE1; --ink-2:#CFC4B6; --ink-3:#9C9083;
+  --line:rgba(243,236,225,.16); --red:#FF5A62; --red-soft:rgba(255,90,98,.12);
+  --gold:#E9B45C; --gold-soft:rgba(233,180,92,.16); --grey-soft:rgba(243,236,225,.07); color-scheme:dark }
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:40px 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));
+  display:flex;flex-direction:column;gap:36px}
+h1,h2{font-family:var(--f-display);text-wrap:balance;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4.5vw,2.7rem);font-weight:900;line-height:1.05}
+h2{font-size:1.25rem;font-weight:800}
+.eyebrow{font-family:var(--f-display);font-weight:700;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.lede{color:var(--ink-2);max-width:62ch;margin-top:10px}
+code,.url{font-family:var(--f-mono);font-size:.82rem}
+
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.stat b{display:block;font-family:var(--f-display);font-size:1.9rem;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{color:var(--ink-2);font-size:.85rem}
+.stat.r b{color:var(--red)} .stat.g b{color:var(--gold)}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.85rem;color:var(--ink-2);align-items:center}
+.legend .chip{pointer-events:none}
+
+.rows{display:flex;flex-direction:column;gap:14px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,300px);align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.srcs{display:flex;flex-wrap:wrap;gap:6px;min-width:0}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:999px;font-family:var(--f-mono);font-size:.78rem;
+  max-width:100%;overflow-wrap:anywhere;border:1px solid transparent}
+.chip.nav{background:var(--red-soft);color:var(--ink);border-color:color-mix(in srgb,var(--red) 35%,transparent)}
+.chip.orphan{background:transparent;color:var(--ink-2);border-color:var(--line);border-style:dashed}
+.chip.pdf{background:var(--grey-soft);color:var(--ink-2)}
+.chip.pdf::before{content:"PDF";font-family:var(--f-display);font-weight:800;font-size:.62rem;letter-spacing:.06em;color:var(--ink-3)}
+.flag{font-family:var(--f-display);font-weight:800;font-size:.66rem;padding:1px 6px;border-radius:5px;background:var(--gold-soft);color:var(--gold);letter-spacing:.03em}
+.arrow{display:flex;justify-content:center;color:var(--ink-3)}
+.arrow svg{width:26px;height:14px}
+.dest{border-left:3px solid var(--red);padding:4px 0 4px 14px;min-width:0}
+.dest .url{font-size:.95rem;font-weight:500;color:var(--ink);overflow-wrap:anywhere}
+.dest .name{font-family:var(--f-display);font-weight:800;font-size:1.02rem}
+.dest .note{font-size:.82rem;color:var(--ink-3);margin-top:2px}
+.dest.planned{border-left-style:dashed;border-left-color:var(--gold)}
+.dest.planned .note{color:var(--gold)}
+.dest.none{border-left-color:var(--ink-3)}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:.78rem;font-family:var(--f-mono)}
+
+.split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.panel p{color:var(--ink-2);font-size:.9rem}
+
+.decisions{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.dec{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.dec h3{font-family:var(--f-display);font-size:.98rem;font-weight:800;display:flex;gap:8px;align-items:center}
+.dec p{color:var(--ink-2);font-size:.88rem}
+.foot{color:var(--ink-3);font-size:.82rem}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .row{grid-template-columns:minmax(0,1fr);gap:10px}
+  .arrow{justify-content:flex-start;transform:rotate(90deg);width:26px}
+  .split{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">maryspizzaandpasta.com · domain cutover</div>
+    <h1>Where every old URL goes</h1>
+    <p class="lede">The old WordPress site, crawled Nov 27, 2026, mapped onto the rebuild. Each row is one new page and the old URLs that will 301-redirect to it. Unlisted old URLs get the new 404 page.</p>
+  </header>
+
+  <section class="stats" aria-label="Summary">
+    <div class="stat r"><b id="nRedirect">0</b><span>old URLs redirect (301)</span></div>
+    <div class="stat"><b>2</b><span>keep the same URL (<code>/</code>, <code>/gallery/</code>)</span></div>
+    <div class="stat g"><b id="nPending">0</b><span>specials PDFs waiting on a decision</span></div>
+    <div class="stat"><b id="n404">0</b><span>pages and PDFs left to 404</span></div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <h2>Redirects</h2>
+    <div class="legend">
+      <span class="chip nav">/in-nav/</span> in the old site's menu
+      <span class="chip orphan">/orphan/</span> unlinked old version
+      <span class="chip pdf">file.pdf</span> linked PDF
+      <span class="flag">D1</span> depends on a decision below
+    </div>
+    <div class="rows" id="rows"></div>
+  </section>
+
+  <section class="split">
+    <div class="panel">
+      <h2>Waiting on a decision</h2>
+      <p>Weekly specials flyers from the old nav. No matching page on the rebuild yet (decision 4).</p>
+      <div class="srcs" id="pending"></div>
+    </div>
+    <div class="panel">
+      <h2>Left to 404</h2>
+      <p>Never real content, so no redirect. Plus about 20 older menu and flyer PDFs (2020–2025) and the old gallery images.</p>
+      <div class="srcs" id="gone"></div>
+    </div>
+  </section>
+
+  <section style="display:flex;flex-direction:column;gap:14px">
+    <h2>Decisions needed</h2>
+    <div class="decisions">
+      <div class="dec"><h3><span class="flag">D1</span>Dine-in menus</h3><p>The rebuild has takeout menus only. Dine-in URLs go to that location's takeout menu unless dine-in menus get added.</p></div>
+      <div class="dec"><h3><span class="flag">D2</span>Speonk drink menu</h3><p>Goes to the Speonk page for now. Could get its own drink menu, since the bar is a draw there.</p></div>
+      <div class="dec"><h3><span class="flag">D3</span>Employment</h3><p>No jobs page. Contact (with a job inquiry option), the homepage, or a small employment page.</p></div>
+      <div class="dec"><h3><span class="flag">D4</span>Weekly specials</h3><p>Pasta, Chicken and Seafood Night and Happy Hour. If still running, add them to Promotions and redirect the PDFs there.</p></div>
+      <div class="dec"><h3><span class="flag">D5</span>Islip Terrace and Farmingdale pages</h3><p>Not built yet. Build them before cutover, or point their redirects at the homepage locations section until they exist.</p></div>
+    </div>
+  </section>
+
+  <p class="foot">Source: crawl of the Yoast sitemap (44 pages) plus every internal link. Full table with notes in <code>redirect-plan.md</code>.</p>
+</div>
+
+<script>
+const N='nav', O='orphan', P='pdf';
+const rows=[
+  {to:'/speonk/', name:'Speonk location', src:[['/home-speonk/',N],['/about-us-speonk/',N],['/speonk-drink-menu/',N,'D2']]},
+  {to:'/islip-terrace/', name:'Islip Terrace location', planned:true, src:[['/home-islip/',N],['/about-us-islip/',N],['/home-islip-2024/',O]]},
+  {to:'/farmingdale/', name:'Farmingdale location', planned:true, src:[['/home-farmingdale/',N],['/about-us-farmingdale/',N],['/home-farmingdale-2025/',O]]},
+  {to:'/takeout-menu-farmingdale-islip/', name:'Farmingdale & Islip takeout menu', src:[['/menus/',N],['/islip-farm-takeout-menu/',N],['/farmingdale-dineinmenu/',N,'D1'],['/take-out-menu/',O],['/islip-dine-in-menu/',O,'D1'],['/dine-in-menu/',O,'D1'],['/2021-dine-in-menu/',O,'D1'],['FINALFarmIslp-TakeOutMenu2026Web.pdf',P]]},
+  {to:'/takeout-menu-speonk/', name:'Speonk takeout menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N,'D1'],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
+  {to:'/catering-menu/', name:'Catering menu', src:[['/catering-menu-new/',N],['/catering-25/',O],['/speonk-catering-menu/',O],['catering-menu-new-2026.pdf',P]]},
+  {to:'/promotions/', name:'Promotions', src:[['Holiday2026.pdf',P],['BlackFriday2026.pdf',P],['football-flyer26.pdf',P]]},
+  {to:'/contact/', name:'Contact', src:[['/contact-main/',N],['/employment-new/',N,'D3'],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},
+  {to:'/gallery/', name:'Gallery', note:'Same URL as the old gallery page', src:[['/bwg_gallery/marys-pizza/',O],['/bwg_gallery/new-gallery/',O]]},
+  {to:'/', name:'Homepage', note:'Old homepage versions', src:[['/homepage/',O],['/homepage2021/',O],['/home2020/',O],['/landing-old22/',O],['/land/',O],['/welcome-to-marys-pizza-and-pasta3/',O]]},
+];
+const pending=['DineinMenuPastaNite2022WEB.pdf','CHICKEN-NIGHT-2.pdf','chicken-night26.pdf','Seafood-Night.pdf','happy-hour-3.pdf'];
+const gone=[['/home-2/','theme demo'],['/2020/04/28/hello-world/'],['/2020/04/'],['/category/uncategorized/'],['/author/admin/'],['/wp-login.php'],['/wp-admin/*'],['/feed/'],['/comments/feed/'],['/xmlrpc.php']];
+const OLD_PDFS=20;
+
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const chip=(u,k,f)=>`<span class="chip ${k}">${esc(u)}${f?` <span class="flag">${f}</span>`:''}</span>`;
+const arrow='<svg viewBox="0 0 26 14" fill="none" aria-hidden="true"><path d="M1 7h22M17 1.5 23 7l-6 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>';
+let total=0;
+document.getElementById('rows').innerHTML=rows.map(r=>{
+  total+=r.src.length;
+  const note=r.planned?'Not built yet. Use /#locations until it is (D5)':(r.note||'');
+  return `<div class="row">
+    <div class="srcs">${r.src.map(s=>chip(...s)).join('')}</div>
+    <div class="arrow">${arrow}</div>
+    <div class="dest${r.planned?' planned':''}">
+      <div class="name">${esc(r.name)} <span class="count">← ${r.src.length}</span></div>
+      <div class="url">${esc(r.to)}</div>
+      ${note?`<div class="note">${esc(note)}</div>`:''}
+    </div></div>`;
+}).join('');
+document.getElementById('pending').innerHTML=pending.map(u=>chip(u,P,'D4')).join('');
+document.getElementById('gone').innerHTML=gone.map(([u])=>chip(u,O)).join('')+chip(`~${OLD_PDFS} older PDFs`,P);
+document.getElementById('nRedirect').textContent=total;
+document.getElementById('nPending').textContent=pending.length;
+document.getElementById('n404').textContent=gone.length+OLD_PDFS;
+</script>
