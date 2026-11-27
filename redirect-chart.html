@@ -111,8 +111,6 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
       <h2>Before cutover</h2>
       <ul class="todo">
         <li>Build the Islip Terrace and Farmingdale location pages</li>
-        <li>Add an Employment option to the contact form</li>
-        <li>Add a Weekly Specials card to Promotions (days, prices, locations)</li>
         <li>Add the dine-in hero note to the menus</li>
         <li>Write the redirect rules into <code>netlify.toml</code></li>
       </ul>
@@ -129,8 +127,8 @@ code,.url{font-family:var(--f-mono);font-size:.82rem}
     <div class="decisions">
       <div class="dec"><h3>Dine-in menus</h3><p>One full menu per location, labeled Dine-In &amp; Takeout. Old dine-in URLs redirect to it.</p></div>
       <div class="dec"><h3>Speonk drink menu</h3><p>No drink menu. The old page redirects to the Speonk page, which covers the bar.</p></div>
-      <div class="dec"><h3>Employment</h3><p>Redirects to Contact, which gets an Employment inquiry type.</p></div>
-      <div class="dec"><h3>Weekly specials</h3><p>No full specials menus. One Weekly Specials card on Promotions, and the old flyers redirect there.</p></div>
+      <div class="dec"><h3>Employment</h3><p>Redirects to Contact with the new Employment inquiry type selected.</p></div>
+      <div class="dec"><h3>Weekly specials</h3><p>No full specials menus. A Weekly Specials card on Promotions covers Chicken and Seafood Night (Farmingdale and Islip Terrace), and the old flyers redirect there.</p></div>
       <div class="dec"><h3>Islip Terrace and Farmingdale</h3><p>Both pages get built before cutover, so their redirects point straight at them.</p></div>
     </div>
   </section>
@@ -148,7 +146,7 @@ const rows=[
   {to:'/menu-speonk/', name:'Speonk menu', src:[['/menus-speonk/',N],['/speonk-takeout-menu/',N],['/speonk-dine-in-menu/',N],['/speonk-takeoutmenu/',O],['2026SpeonkTakeOutMenuWeb.pdf',P]]},
   {to:'/catering-menu/', name:'Catering menu', src:[['/catering-menu-new/',N],['/catering-25/',O],['/speonk-catering-menu/',O],['catering-menu-new-2026.pdf',P]]},
   {to:'/promotions/', name:'Promotions', note:'Specials flyers land on a Weekly Specials card', src:[['Holiday2026.pdf',P],['BlackFriday2026.pdf',P],['football-flyer26.pdf',P],['DineinMenuPastaNite2022WEB.pdf',P],['CHICKEN-NIGHT-2.pdf',P],['chicken-night26.pdf',P],['Seafood-Night.pdf',P],['happy-hour-3.pdf',P]]},
-  {to:'/contact/', name:'Contact', src:[['/contact-main/',N],['/employment-new/',N],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},
+  {to:'/contact/', name:'Contact', note:'Employment lands on /contact/?type=employment', src:[['/contact-main/',N],['/employment-new/',N],['/contact-2/',O],['/contact-speonk-2/',O],['/contact-farmingdale/',O],['/contact-islip-old/',O],['/contact-islip-terrace-2024/',O]]},
   {to:'/gallery/', name:'Gallery', note:'Same URL as the old gallery page', src:[['/bwg_gallery/marys-pizza/',O],['/bwg_gallery/new-gallery/',O]]},
   {to:'/', name:'Homepage', note:'Old homepage versions', src:[['/homepage/',O],['/homepage2021/',O],['/home2020/',O],['/landing-old22/',O],['/land/',O],['/welcome-to-marys-pizza-and-pasta3/',O]]},
 ];
