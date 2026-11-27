@@ -33,7 +33,7 @@ Order Now                     HungerRush (external, unchanged)
 
 ## Redirect table
 
-**Islip Terrace and Farmingdale location pages** will be built before cutover, so their rules point straight at `/islip-terrace/` and `/farmingdale/`. Don't switch the domain until both pages exist (until then those URLs show the 404 page).
+**Location pages:** `/speonk/` and `/islip-terrace/` are built (Islip Terrace still has photo placeholders). `/farmingdale/` will be built before cutover; its rules already point at it, so don't switch the domain until it exists.
 
 ### Location pages (top priority: most likely what Google Business Profile and other listings link to)
 

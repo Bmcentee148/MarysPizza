@@ -32,7 +32,7 @@ TEXT = {
 
 # Pages that are linked to but not built yet (e.g. "/about/"). Links to these
 # don't fail the build. Keep empty unless you're adding a page in stages.
-PLANNED = {"/islip-terrace/", "/farmingdale/"}
+PLANNED = {"/farmingdale/"}
 
 TOKEN_RE = re.compile(r"__[A-Z0-9]+(?:_[A-Z0-9]+)*__")
 
@@ -314,6 +314,10 @@ def build():
     check_site_rules(scans, errors)
     check_redirects(errors)
     check_promo_dates(pages, errors, notes)
+    for name, html in pages.items():  # location pages waiting on real photos
+        n = len(re.findall(r'class="lp-ph[" ]', html))
+        if n:
+            notes.append(f"{url_for(name)}: {n} \"Photo coming soon\" placeholder(s) still to replace with real photos")
 
     if errors:
         print("BUILD FAILED:\n  " + "\n  ".join(errors), file=sys.stderr)

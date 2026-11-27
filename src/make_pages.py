@@ -74,6 +74,11 @@ PAGES = {
     },
     # Served by Netlify for any URL that doesn't exist (dist/404.html). noindex: no
     # canonical, a robots noindex tag, and left out of the sitemap.
+    "islip-terrace": {
+        "title": "Islip Terrace | Mary's Pizza and Pasta — the Original Mary's",
+        "description": "The original Mary's Pizza and Pasta on Connetquot Avenue in Islip Terrace, NY: family dining, Chicken and Seafood Nights, a private room for parties, takeout and delivery. Hours, menus and directions.",
+        "css": ["location.css"],
+    },
     "404": {
         "title": "Page Not Found | Mary's Pizza and Pasta",
         "description": "This page couldn't be found. Find the menu, locations and hours for Mary's Pizza and Pasta in Speonk, Islip Terrace and Farmingdale.",
